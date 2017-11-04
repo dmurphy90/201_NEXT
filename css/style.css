@@ -159,12 +159,39 @@ main {
 .student_info_card {
 	width:460px;
 	height: 300px;
-	padding:20px;
 	outline: 1px dashed;
 }
 
 #user_image_wrap {
+	float:left;
 	margin:25px;
+}
+
+#student_name {
+	float: left;
+	margin-top: 65px;
+	margin-left: 40px;
+}
+
+.student_info_card div {
+	clear:both;
+	height: 200px;
+}
+
+#bump {
+	padding:8px 16px;
+	font-size: 20px;
+	font-weight: bold;
+	float: right;
+	margin-right:20px;
+}
+
+#next{
+	padding:8px 16px;
+	font-size: 20px;
+	font-weight: bold;
+	float: right;
+	margin-right:20px;
 }
 
 .clearFix {
