@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NEXT! TA Help System - Student</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <header>
+      <div class="logo">logo</div>
+        <button id="log_out_btn">Log Out</button>
+      <h1>Student View</h1>
+    </header>
+    <main>
+      <section class="problem_otd">
+        <h2>Problem of the Day</h2>
+        <p>Hong Kong Phooey, number one super guy. Hong Kong Phooey, quicker than the human eye. He's got style, a groovy style, and a car that just won't stop.</p>
+        <p> When the going gets tough, he's really rough, with a Hong Kong Phooey chop (Hi-Ya!). Hong Kong Phooey, number one super guy. Hong Kong Phooey, quicker than the human eye. Hong Kong Phooey, he's fan-riffic!</p>
+      </section>
+      <section class="student_q">
+        <ol id="queue" class="student">
+          <li data-user-id="1"><span class="course"></span><span class="name">Gulliver</span><span class="issue">I can't find my keys</li></span>
+          <li data-user-id="2"><span class="course"></span><span class="name">Lennon</span><span class="issue">I deleted my hard drive</li></span>
+          <li data-user-id="3"><span class="course"></span><span class="name">Gulliver</span><span class="issue">This doesn't work</li></span>
+          <li data-user-id="4"><span class="course"></span><span class="name">Wren</span><span class="issue">git is messed up</li></span>
+          <li data-user-id="5"><span class="course"></span><span class="name">Ignatius</span><span class="issue">PLEASE MAKE MORE COFFEE!!!</li></span>
+          <li data-user-id="6"><span class="course"></span><span class="name">Zola</span><span class="issue">Salmon Cookies??? HELP!!!</li></span>
+        </ol>
+      </section>
+      <section class="student_options">
+        <div class="left">
+          <h3>Availiable TA</h3>
+          <ol id="available_ta" >
+            <li data-user-id="1">Fred</li>
+            <li data-user-id="2">Daffney</li>
+            <li data-user-id="3">Thelma</li>
+            <li data-user-id="4">Shaggy</li>
+            <li data-user-id="5">Scoobie</li>
+            <li data-user-id="6">Capt Caveman</li>
+          </ol>
+          <h3>Problem Type</h3>
+          <ol id="problem_type">
+            <li>I don't understand</li>
+            <li>This doesn't work</li>
+            <li>My computer crashed</li>
+            <li>I created an infinite loop</li>
+            <li>loops don't work on my computer</li>
+            <li>i? j? are they the same</li>
+          </ol>
+        </div>
+        <div class="right">
+          <button id="enter_queue_btn">Enter Queue</button>
+          <button id="pause_resume_btn">Pause/Resume</button>
+          <button id="remove_request_btn">Remove from Queue</button>
+        </div>
+      </section>
+    </main>
+    <footer>
+    </footer>
+    <script src="js/app.js"></script>
+  </body>
+</html>
