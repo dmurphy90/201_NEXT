@@ -120,5 +120,6 @@ function build_test_data() {
 }
 
 build_users_object();
+build_test_data();
 // var myCourse = 'seattled27';
 // the_queues[myCourse].kevin_miller_d27
