@@ -12,13 +12,12 @@ var current_201_options = {currentCourse: '201', courseFocus: '', courseInstruct
 var usersData = [ ['Cosmo', 'Spacely', 'student', {currentCourse: '401', courseFocus: 'javascript', courseInstructor: 'Elroy Jetson'}], ['Kevin', 'Miller', 'student', current_201_options], ['Michael', 'Stuart', 'ta', {}]];
 
 //function User(firstName, lastName, userType, currentCourse, courseFocus){
-function User(firstName, lastName, userType, studentOptions){
+function User(firstName, lastName, userType, course){
   this.userId;
   this.firstName = firstName;
   this.lastName = lastName;
   this.fullName = this.firstName + ' ' + this.lastName;
   this.userType = userType;
-  this.studentOptions = studentOptions;
   this.userPermissionsOptions = {
     ta: 'admin',
     student: 'basic',
@@ -26,9 +25,7 @@ function User(firstName, lastName, userType, studentOptions){
     supportStaff: 'basic'
   };
   this.userPerms;
-  this.currentCourse;
-  this.courseFocus;
-  this.courseInstructor;
+  this.currentCourse = course;
   this.profileImageFolderPath = 'images/';
   this.profileImagePath;
   this.imageFormat = '.jpg';
@@ -39,7 +36,7 @@ function User(firstName, lastName, userType, studentOptions){
 }
 
 User.prototype.createUserId = function() {
-  this.userId = 'user_' + uniqueId();
+  this.userId = this.lastName + this.firstName.charAt(0) + this.currentCourse;
 };
 
 User.prototype.setProfileImagePath = function(){
@@ -50,12 +47,6 @@ User.prototype.setPermissions = function() {
   this.userPerms = this.userPermissionsOptions[this.userType];
 };
 
-User.prototype.setStudentOptions = function(){
-  if( Object.keys(this.studentOptions).length === 0) return;
-  this.currentCourse = this.studentOptions.currentCourse;
-  this.courseFocus = this.studentOptions.courseFocus;
-  this.courseInstructor = this.studentOptions.courseInstructor;
-};
 
 
 
