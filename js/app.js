@@ -27,8 +27,10 @@ var usersData = [
   ['Roger', 'Davenport', 'student ta', 'seattle-201d27'],
   ['Tama', 'Rushin', 'student ta', 'seattle-201d27']
 ];
+var testProblems = [['DavenportR_d27','number1','Mike','seattle-201d27'],['MassieM-d27', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ_d27', 'number 3', 'Josh','seattle-201d27'],['NorzaH_d27', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD_d27', 'number5', 'Josh', 'seattle-201d27']];
 
 var courses = ['seattle-201d27'];
+var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
 
 //function User(firstName, lastName, userType, currentCourse, courseFocus){
 function User(firstName, lastName, userType, course){
@@ -111,10 +113,12 @@ function create_user_from_data(firstName, lastName, userType, course){
 
 
 var the_queues = new Queues();
-var the_request = new HelpRequest('kevin_miller_d27', 'help', 'that guy', 'seattle201d27');
-
+for (var i = 0; i < testProblems.length; i++) {
+ new HelpRequest(testProblems[i][0],testProblems[i][1],testProblems[i][2],testProblems[i][3]);
+}
+;
 console.log('the_queues: ', the_queues);
-console.log('the_request: ', the_request);
+
 
 build_users_object();
 // var myCourse = 'seattled27';
