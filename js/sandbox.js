@@ -74,6 +74,13 @@ function create_user_from_data(firstName, lastName, userType, studentOptions){
   return new User(firstName, lastName, userType, studentOptions);
 }
 
+function Course(courseNum, instructor){
+  this.courseNum = courseNum;
+  this.instructor = instructor;
+  this.availableTA = [];
+}
+
+
 function buildTestRequests(){
   var testRequestIssues = ['this is broken', 'I have a gituation'];
   var thisUser;
