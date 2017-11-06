@@ -111,14 +111,13 @@ function create_user_from_data(firstName, lastName, userType, course){
 }
 
 
-
-var the_queues = new Queues();
-for (var i = 0; i < testProblems.length; i++) {
- new HelpRequest(testProblems[i][0],testProblems[i][1],testProblems[i][2],testProblems[i][3]);
+function build_test_data() {
+  var the_queues = new Queues();
+  for (var i = 0; i < testProblems.length; i++) {
+    new HelpRequest(testProblems[i][0],testProblems[i][1],testProblems[i][2],testProblems[i][3]);
+  };
+  console.log('the_queues: ', the_queues);
 }
-;
-console.log('the_queues: ', the_queues);
-
 
 build_users_object();
 // var myCourse = 'seattled27';
