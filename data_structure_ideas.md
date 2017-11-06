@@ -1,7 +1,6 @@
 ## Possible Data Structures
 
 ### Single User Structure
-
     User{
     	"userId":"user_MjAxNzEwNDY2MzI0",
     	"firstName":"Cosmo",
