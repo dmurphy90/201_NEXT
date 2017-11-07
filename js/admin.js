@@ -43,6 +43,7 @@ function set_active_course(e) {
   //if the values are the same, then nothing changed, no update needed
   if (current_active_course === updated_active_course) return;
   createList(updated_active_course);
+
   update_available_ta(active_ta, current_active_course, updated_active_course);
 }
 
@@ -92,6 +93,7 @@ function createList(course) {
 
   else {
     var queueDisplay = document.getElementById('queue');
+    queueDisplay.innerHTML = '';
     for (var a = 0; a < the_queues[course + '_arr'].length; a++) {
       var newLi = document.createElement('li');
       var userid = the_queues[course + '_arr'][a];
