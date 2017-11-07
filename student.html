@@ -29,24 +29,47 @@
       </section>
       <section class="student_options">
         <div class="left">
-          <h3>Availiable TA</h3>
-          <ol id="available_ta" >
+          <form id="request_options">
+            <h3>Availiable TA</h3>
+              <fieldset>
+                <label for="pick_ta">Pick Available TA</label>
+                <select name="pick_ta" size="1">
+                  <option disabled selected value> - Available TAs - </option>
+                  <option value="user_ta1">TA 1</option>
+                  <option value="user_ta2">TA 2</option>
+                  <option value="user_ta3">TA 3</option>
+                </select>
+              </fieldset>
+          <!-- <ol id="available_ta" >
             <li data-userId="user_MjAxNzEwNDY2MzI0"><span class="course_focus">javascript</span><span class="course_num">401</span><span class="name">Fred</span></li>
             <li data-userId="user_MjAxNzEwNDY2MzI1"><span class="course_focus">python</span><span class="course_num">301</span><span class="name">Daffney</span></li>
             <li data-userId="user_MjAxNzEwNDY2MzI2"><span class="course_focus">javascript</span><span class="course_num">401</span><span class="name">Thelma</span></li>
             <li data-userId="user_MjAxNzEwNDY2MzI3"><span class="course_focus">javascript</span><span class="course_num">102</span><span class="name">Shaggy</span></li>
             <li data-userId="user_MjAxNzEwNDY2MzI4"><span class="course_focus">javascript</span><span class="course_num">201</span><span class="name">Scoobie</span></li>
             <li data-userId="user_MjAxNzEwNDY2MzI5"><span class="course_focus">javascript</span><span class="course_num">101</span><span class="name">Capt Caveman</span></li>
-          </ol>
-          <h3>Problem Type</h3>
-          <ol id="problem_type">
+          </ol> -->
+            <h3>Problem Type</h3>
+<!-- A dropdown menu of all BusMall products (<select> and <option> will be needed) -->
+            <fieldset>
+              <label for="problem">Problem Type</label>
+              <select name="problem" size="1">
+                <option disabled selected value> - Problem - </option>
+                <option value="code_error">Code Error</option>
+                <option value="problem_domain">Problem Domain</option>
+                <option value="git">Git</option>
+                <option value="styling">Styling</option>
+                <option value="other">Other</option>
+              </select>
+            </fieldset>
+          </form>
+          <!-- <ol id="problem_type">
             <li>I don't understand</li>
             <li>This doesn't work</li>
             <li>My computer crashed</li>
             <li>I created an infinite loop</li>
             <li>loops don't work on my computer</li>
             <li>i? j? are they the same</li>
-          </ol>
+          </ol> -->
         </div>
         <div class="right">
           <button id="enter_queue_btn">Enter Queue</button>
