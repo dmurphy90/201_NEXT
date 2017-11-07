@@ -1,6 +1,7 @@
 'use strict';
 
 var test_TA = 'StuartM';
+var currentCourseToDislay = 'Unavailable';
 
 //object to hold all course objects
 var courses = {};
@@ -36,10 +37,12 @@ function set_active_course(e) {
   customSelectAction(this, e);
   //get the value of the active course after it is changed
   var updated_active_course = active_course_ul.dataset.value;
+
   //get the active TA
   var active_ta = test_TA;
   //if the values are the same, then nothing changed, no update needed
   if (current_active_course === updated_active_course) return;
+  createList(updated_active_course);
   update_available_ta(active_ta, current_active_course, updated_active_course);
 }
 
@@ -78,4 +81,24 @@ function build_test_courses_data() {
     courses[the_course.courseNum] = the_course;
   }
   console.log('courses: ', courses);
+}
+
+function createList(course) {
+  if (course === 'Unavailable') {
+    var olClear = document.getElementById('queue');
+    olClear.innerHTML = '';
+    return;
+  }
+
+  else {
+    var queueDisplay = document.getElementById('queue');
+    for (var a = 0; a < the_queues[course + '_arr'].length; a++) {
+      var newLi = document.createElement('li');
+      var userid = the_queues[course + '_arr'][a];
+      newLi.innerHTML = (a + 1 + '    ') + the_queues[course][userid].newli;
+      queueDisplay.appendChild(newLi);
+      newLi.setAttribute('userid',userid);
+      console.log('newLi', newLi);
+    }
+}
 }
