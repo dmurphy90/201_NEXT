@@ -27,10 +27,13 @@ var usersData = [
   ['Roger', 'Davenport', 'student ta', 'seattle-201d27'],
   ['Tama', 'Rushin', 'student ta', 'seattle-201d27']
 ];
-var testProblems = [['DavenportR_d27','number1','Mike','seattle-201d27'],['MassieM-d27', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ_d27', 'number 3', 'Josh','seattle-201d27'],['NorzaH_d27', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD_d27', 'number5', 'Josh', 'seattle-201d27']];
+var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['Van NessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27']];
 
-var courses = ['seattle-201d27'];
+// var courses = ['seattle-201d27'];
+var coursesData = [{courseName: 'seattle-201d27', courseInstructor: 'Brian Nations'}];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
+
+var the_queues = new Queues();
 
 //function User(firstName, lastName, userType, currentCourse, courseFocus){
 function User(firstName, lastName, userType, course){
@@ -56,7 +59,7 @@ function User(firstName, lastName, userType, course){
 }
 
 User.prototype.createUserId = function() {
-  this.userId = this.lastName + this.firstName.charAt(0) + this.currentCourse;
+  this.userId = this.lastName + this.firstName.charAt(0);
 };
 
 User.prototype.setProfileImagePath = function(){
@@ -66,6 +69,12 @@ User.prototype.setProfileImagePath = function(){
 User.prototype.setPermissions = function() {
   this.userPerms = this.userPermissionsOptions[this.userType];
 };
+
+if (localStorage.potd) {
+  console.log('this is working');
+  currentPotd.innerHTML = '';
+  currentPotd.innerHTML = localStorage.potd;
+}
 
 function Course(courseNum, instructor) {
   this.courseNum = courseNum;
@@ -80,14 +89,12 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.course = course;
   this.requestIssue = requestIssue;
   this.requestedTA = requested_ta;
-  this.requestTimeStamp;
+  this.requestTimeStamp = dateToday.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit'});
+  this.newli = '<span class="userid">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
   // this.createRequestTimeStamp();
   this.add_to_queue();
 }
 
-HelpRequest.prototype.createRequestTimeStamp = function() {
-  this.requestTimeStamp = dateToday.toDateString() + ' ' + dateToday.toLocaleTimeString();
-};
 
 HelpRequest.prototype.add_to_queue = function(){
   if (!the_queues[this.course]) the_queues[this.course] = {};
@@ -110,16 +117,21 @@ function create_user_from_data(firstName, lastName, userType, course){
   return new User(firstName, lastName, userType, course);
 }
 
-
-function build_test_data() {
-  var the_queues = new Queues();
-  for (var i = 0; i < testProblems.length; i++) {
-    new HelpRequest(testProblems[i][0],testProblems[i][1],testProblems[i][2],testProblems[i][3]);
-  };
-  console.log('the_queues: ', the_queues);
-}
-
 build_users_object();
-build_test_data();
+
+
+var the_queues = new Queues();
+// this is just for testing, the HelpRequest needs to be called once the student clicks add to //queue button
+for (var i = 0; i < testProblems.length; i++) {
+  new HelpRequest(testProblems[i][0],testProblems[i][1],testProblems[i][2],testProblems[i][3]);
+};
+
+
+console.log('the_queues: ', the_queues);
+
+
+
+
+localStorage.the_queues = JSON.stringify(the_queues);
 // var myCourse = 'seattled27';
 // the_queues[myCourse].kevin_miller_d27
