@@ -7,7 +7,9 @@
   </head>
   <body>
     <header>
-      <div class="logo">logo</div>
+      <div class="header_logo">
+        <!-- <img id="header_logo" src="images/NEXT.png"> -->
+      </div>
         <button id="log_out_btn">Log Out</button>
       <h1>Admin View</h1>
     </header>
@@ -36,15 +38,22 @@
           </ol>
         </section>
         <section class="problem_otd">
-          <h2>Problem of the Day</h2>
-          <div>
-          </div>
+          <button id="problem_otd_button">Post A Problem Of The Day</button>
+            <div id="potd_overlay"></div>
+            <div id="potd_popup">
+              <fieldset>
+                <input type="text" name="potd" placeholder="Problem of the Day">
+              </fieldset>
+              <button id="submit_potd">Post</button>
+              <button id="cancel_potd">Cancel</button>
+            </div>
         </section>
       </section>
       <div class="clearFix"></div>
     </main>
     <footer>
     </footer>
+    <script src="js/potd.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>
