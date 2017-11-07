@@ -198,8 +198,35 @@ main {
 	clear: both;
 }
 
+#active_course {
+	float: left;
+}
 
+#active_course .drop_items {
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+}
 
+#active_course .drop_items.active {
+	opacity: 1;
+	height: auto;
+	overflow: auto;
+	transition: 350ms all;
+}
+
+#active_course ul {
+	cursor: pointer;
+}
+
+#active_course .drop_heading {
+	padding:10px;
+}
+
+#active_course li {
+	outline: 1px dashed;
+	padding: 10px 0;
+}
 
 footer {
 	height: 80px;

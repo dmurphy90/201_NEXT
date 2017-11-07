@@ -29,8 +29,11 @@ var usersData = [
 ];
 var testProblems = [['DavenportR_d27','number1','Mike','seattle-201d27'],['MassieM-d27', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ_d27', 'number 3', 'Josh','seattle-201d27'],['NorzaH_d27', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD_d27', 'number5', 'Josh', 'seattle-201d27']];
 
-var courses = ['seattle-201d27'];
+// var courses = ['seattle-201d27'];
+var coursesData = [{courseName: 'seattle-201d27', courseInstructor: 'Brian Nations'}];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
+
+var the_queues = new Queues();
 
 //function User(firstName, lastName, userType, currentCourse, courseFocus){
 function User(firstName, lastName, userType, course){
@@ -112,7 +115,7 @@ function create_user_from_data(firstName, lastName, userType, course){
 
 
 function build_test_data() {
-  var the_queues = new Queues();
+  //var the_queues = new Queues();
   for (var i = 0; i < testProblems.length; i++) {
     new HelpRequest(testProblems[i][0],testProblems[i][1],testProblems[i][2],testProblems[i][3]);
   };
