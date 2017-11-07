@@ -27,7 +27,7 @@ var usersData = [
   ['Roger', 'Davenport', 'student ta', 'seattle-201d27'],
   ['Tama', 'Rushin', 'student ta', 'seattle-201d27']
 ];
-var testProblems = [['DavenportR_d27','number1','Mike','seattle-201d27'],['MassieM-d27', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ_d27', 'number 3', 'Josh','seattle-201d27'],['NorzaH_d27', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD_d27', 'number5', 'Josh', 'seattle-201d27']];
+var testProblems = [['DavenportRseattle-201d27','number1','Mike','seattle-201d27'],['MassieMseattle-201d27', 'number2', 'Bhavya','seattle-201d27'],['Van NessJseattle-201d27', 'number 3', 'Josh','seattle-201d27'],['NorzaHseattle-201d27', 'number4', 'Mike', 'seattle-201d27'], ['MurphyDseattle-201d27', 'number5', 'Josh', 'seattle-201d27']];
 
 var courses = ['seattle-201d27'];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
@@ -80,7 +80,8 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.course = course;
   this.requestIssue = requestIssue;
   this.requestedTA = requested_ta;
-  this.requestTimeStamp;
+  this.createRequestTimeStamp();
+  this.newli = '<span class="userid">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="Queue Place">  ' + '  queueplace' + ' </span><span class="time"> ' + this.requestTimeStamp + '</span>';
   // this.createRequestTimeStamp();
   this.add_to_queue();
 }
@@ -110,16 +111,19 @@ function create_user_from_data(firstName, lastName, userType, course){
   return new User(firstName, lastName, userType, course);
 }
 
+build_users_object();
 
-function build_test_data() {
   var the_queues = new Queues();
+  // this is just for testing, the HelpRequest needs to be called once the student clicks add to //queue button
   for (var i = 0; i < testProblems.length; i++) {
     new HelpRequest(testProblems[i][0],testProblems[i][1],testProblems[i][2],testProblems[i][3]);
   };
-  console.log('the_queues: ', the_queues);
-}
 
-build_users_object();
-build_test_data();
+  console.log('the_queues: ', the_queues);
+
+
+
+
+localStorage.the_queues = JSON.stringify(the_queues);
 // var myCourse = 'seattled27';
 // the_queues[myCourse].kevin_miller_d27
