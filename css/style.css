@@ -198,8 +198,35 @@ main {
 	clear: both;
 }
 
+#active_course {
+	float: left;
+}
 
+#active_course .drop_items {
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+}
 
+#active_course .drop_items.active {
+	opacity: 1;
+	height: auto;
+	overflow: auto;
+	transition: 350ms all;
+}
+
+#active_course ul {
+	cursor: pointer;
+}
+
+#active_course .drop_heading {
+	padding:10px;
+}
+
+#active_course li {
+	outline: 1px dashed;
+	padding: 10px 0;
+}
 
 footer {
 	height: 80px;
@@ -208,4 +235,30 @@ footer {
  	bottom: 0;
 	background: #fff;
 	outline: 1px dashed;
+}
+
+#potd_overlay {
+  display: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+  z-index: 9999;
+}
+
+#potd_popup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 300px;
+  height: 150px;
+  margin-top: -75px;
+  margin-left: -150px;
+  background: #fff;
+  border: 2px solid #000;
+  z-index: 99999;
 }

@@ -7,7 +7,9 @@
   </head>
   <body>
     <header>
-      <div class="logo">logo</div>
+      <div class="header_logo">
+        <!-- <img id="header_logo" src="images/NEXT.png"> -->
+      </div>
         <button id="log_out_btn">Log Out</button>
       <h1>Admin View</h1>
     </header>
@@ -24,6 +26,16 @@
         <div>
         </section>
       </section>
+      <section id="active_course">
+        <p>Active Course</p>
+        <ul id="active_course_ul" data-value="Unavailable">
+          <li class="drop_heading"> Unavailable
+            <ul class="drop_items">
+              <li>Unavailable</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
       <section class="ta_view_right">
         <section class="admin_ta_q">
           <ol id="queue" class="admin_ta">
@@ -36,15 +48,25 @@
           </ol>
         </section>
         <section class="problem_otd">
-          <h2>Problem of the Day</h2>
-          <div>
-          </div>
+          <button id="problem_otd_button">Post A Problem Of The Day</button>
+            <div id="potd_overlay"></div>
+            <div id="potd_popup">
+              <form id="potd_form">
+                <fieldset>
+                  <input type="text" name="potd_text" placeholder="Problem of the Day">
+                </fieldset>
+                <button id="submit_potd" type="submit">Post</button>
+                <button id="cancel_potd">Cancel</button>
+              </form>
+            </div>
         </section>
       </section>
       <div class="clearFix"></div>
     </main>
     <footer>
     </footer>
+    <script src="js/potd.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
   </body>
 </html>
