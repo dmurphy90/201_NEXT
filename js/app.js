@@ -27,7 +27,7 @@ var usersData = [
   ['Roger', 'Davenport', 'student ta', 'seattle-201d27'],
   ['Tama', 'Rushin', 'student ta', 'seattle-201d27']
 ];
-var testProblems = [['DavenportRseattle-201d27','number1','Mike','seattle-201d27'],['MassieMseattle-201d27', 'number2', 'Bhavya','seattle-201d27'],['Van NessJseattle-201d27', 'number 3', 'Josh','seattle-201d27'],['NorzaHseattle-201d27', 'number4', 'Mike', 'seattle-201d27'], ['MurphyDseattle-201d27', 'number5', 'Josh', 'seattle-201d27']];
+var testProblems = [['DavenportRseattle-201d27','number1','Mike','seattle-201d27'],['MassieMseattle-201d27', 'number2', 'Bhavya','seattle-201d27'],['Van NessJseattle-201d27', 'number 3', 'Josh','seattle-201d27'],['NorzaHseattle-201d27', 'number4', 'Mike', 'seattle-201d27'], ['MurphyDseattle-201d27', 'number5', 'Josh', 'seattle-201d27'], ['MillerKseattle-201d27', 'Number 1', 'Bhavya', 'seattle-201d27']];
 
 var courses = ['seattle-201d27'];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
@@ -80,15 +80,12 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.course = course;
   this.requestIssue = requestIssue;
   this.requestedTA = requested_ta;
-  this.createRequestTimeStamp();
+  this.requestTimeStamp = dateToday.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit'});
   this.newli = '<span class="userid">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
   // this.createRequestTimeStamp();
   this.add_to_queue();
 }
 
-HelpRequest.prototype.createRequestTimeStamp = function() {
-  this.requestTimeStamp = dateToday.toDateString() + ' ' + dateToday.toLocaleTimeString('en-US');
-};
 
 HelpRequest.prototype.add_to_queue = function(){
   if (!the_queues[this.course]) the_queues[this.course] = {};
