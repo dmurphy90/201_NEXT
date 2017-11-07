@@ -70,11 +70,13 @@ User.prototype.setPermissions = function() {
   this.userPerms = this.userPermissionsOptions[this.userType];
 };
 
-if (localStorage.potd) {
-  console.log('this is working');
-  currentPotd.innerHTML = '';
-  currentPotd.innerHTML = localStorage.potd;
-}
+function loadPotd(){
+  if (localStorage.potd) {
+    console.log('this is working');
+    currentPotd.innerHTML = '';
+    currentPotd.innerHTML = localStorage.potd;
+  }
+};
 
 function Course(courseNum, instructor) {
   this.courseNum = courseNum;
