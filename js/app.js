@@ -81,13 +81,13 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.requestIssue = requestIssue;
   this.requestedTA = requested_ta;
   this.createRequestTimeStamp();
-  this.newli = '<span class="userid">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="Queue Place">  ' + '  queueplace' + ' </span><span class="time"> ' + this.requestTimeStamp + '</span>';
+  this.newli = '<span class="userid">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
   // this.createRequestTimeStamp();
   this.add_to_queue();
 }
 
 HelpRequest.prototype.createRequestTimeStamp = function() {
-  this.requestTimeStamp = dateToday.toDateString() + ' ' + dateToday.toLocaleTimeString();
+  this.requestTimeStamp = dateToday.toDateString() + ' ' + dateToday.toLocaleTimeString('en-US');
 };
 
 HelpRequest.prototype.add_to_queue = function(){
