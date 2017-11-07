@@ -41,11 +41,13 @@
           <button id="problem_otd_button">Post A Problem Of The Day</button>
             <div id="potd_overlay"></div>
             <div id="potd_popup">
-              <fieldset>
-                <input type="text" name="potd" placeholder="Problem of the Day">
-              </fieldset>
-              <button id="submit_potd">Post</button>
-              <button id="cancel_potd">Cancel</button>
+              <form id="potd_form">
+                <fieldset>
+                  <input type="text" name="potd_text" placeholder="Problem of the Day">
+                </fieldset>
+                <button id="submit_potd" type="submit">Post</button>
+                <button id="cancel_potd">Cancel</button>
+              </form>
             </div>
         </section>
       </section>
