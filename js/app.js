@@ -27,10 +27,10 @@ var usersData = [
   ['Roger', 'Davenport', 'student ta', 'seattle-201d27'],
   ['Tama', 'Rushin', 'student ta', 'seattle-201d27']
 ];
-var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['Van NessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27']];
+var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['Van NessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
 
 // var courses = ['seattle-201d27'];
-var coursesData = [{courseName: 'seattle-201d27', courseInstructor: 'Brian Nations'}];
+var coursesData = [{courseName: 'seattle-201d27', courseInstructor: 'Brian Nations'}, {courseName: 'seattle-301d27', courseInstructor: 'Brian Nations'}];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
 
 var the_queues = new Queues();
