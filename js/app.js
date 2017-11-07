@@ -27,7 +27,7 @@ var usersData = [
   ['Roger', 'Davenport', 'student ta', 'seattle-201d27'],
   ['Tama', 'Rushin', 'student ta', 'seattle-201d27']
 ];
-var testProblems = [['DavenportRseattle-201d27','number1','Mike','seattle-201d27'],['MassieMseattle-201d27', 'number2', 'Bhavya','seattle-201d27'],['Van NessJseattle-201d27', 'number 3', 'Josh','seattle-201d27'],['NorzaHseattle-201d27', 'number4', 'Mike', 'seattle-201d27'], ['MurphyDseattle-201d27', 'number5', 'Josh', 'seattle-201d27'], ['MillerKseattle-201d27', 'Number 1', 'Bhavya', 'seattle-201d27']];
+var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['Van NessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27']];
 
 var courses = ['seattle-201d27'];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
@@ -56,7 +56,7 @@ function User(firstName, lastName, userType, course){
 }
 
 User.prototype.createUserId = function() {
-  this.userId = this.lastName + this.firstName.charAt(0) + this.currentCourse;
+  this.userId = this.lastName + this.firstName.charAt(0);
 };
 
 User.prototype.setProfileImagePath = function(){
@@ -110,13 +110,13 @@ function create_user_from_data(firstName, lastName, userType, course){
 
 build_users_object();
 
-  var the_queues = new Queues();
-  // this is just for testing, the HelpRequest needs to be called once the student clicks add to //queue button
-  for (var i = 0; i < testProblems.length; i++) {
-    new HelpRequest(testProblems[i][0],testProblems[i][1],testProblems[i][2],testProblems[i][3]);
-  };
+var the_queues = new Queues();
+// this is just for testing, the HelpRequest needs to be called once the student clicks add to //queue button
+for (var i = 0; i < testProblems.length; i++) {
+  new HelpRequest(testProblems[i][0],testProblems[i][1],testProblems[i][2],testProblems[i][3]);
+};
 
-  console.log('the_queues: ', the_queues);
+console.log('the_queues: ', the_queues);
 
 
 
