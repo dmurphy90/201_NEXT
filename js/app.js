@@ -29,8 +29,11 @@ var usersData = [
 ];
 var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['Van NessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27']];
 
-var courses = ['seattle-201d27'];
+// var courses = ['seattle-201d27'];
+var coursesData = [{courseName: 'seattle-201d27', courseInstructor: 'Brian Nations'}];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
+
+var the_queues = new Queues();
 
 //function User(firstName, lastName, userType, currentCourse, courseFocus){
 function User(firstName, lastName, userType, course){
@@ -110,11 +113,13 @@ function create_user_from_data(firstName, lastName, userType, course){
 
 build_users_object();
 
+
 var the_queues = new Queues();
 // this is just for testing, the HelpRequest needs to be called once the student clicks add to //queue button
 for (var i = 0; i < testProblems.length; i++) {
   new HelpRequest(testProblems[i][0],testProblems[i][1],testProblems[i][2],testProblems[i][3]);
 };
+
 
 console.log('the_queues: ', the_queues);
 
