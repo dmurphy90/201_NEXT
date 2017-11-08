@@ -84,7 +84,7 @@ function build_test_courses_data() {
   console.log('courses: ', courses);
 }
 
-function studentCard(e) {
+function studentCardEvent(e) {
   var userid;
   if (e.target.id === true) {
     userid = e.target.id;
@@ -94,18 +94,26 @@ function studentCard(e) {
     return;
   }
   var tempPic = document.getElementById('user_image_wrap');
+  tempPic.setAttribute('data-id',userid);
   tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
   var tempName = document.getElementById('student_name');
   tempName.innerText = users[userid].firstName;
 };
 
+function studentCard(user) {
+  var userid = user;
+  var tempPic = document.getElementById('user_image_wrap');
+  tempPic.setAttribute('data-id',userid);
+  tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
+  var tempName = document.getElementById('student_name');
+  tempName.innerText = users[userid].firstName;
+};
 function createList(course) {
   if (course === 'Unavailable') {
     var olClear = document.getElementById('queue');
     olClear.innerHTML = '';
     return;
   }
-
   else {
     var queueDisplay = document.getElementById('queue');
     queueDisplay.innerHTML = '';
@@ -119,8 +127,31 @@ function createList(course) {
 
       var testli = document.getElementById(userid);
       console.log('testli',testli);
-      testli.addEventListener('click', studentCard);
+      testli.addEventListener('click', studentCardEvent);
 
     }
+    studentCard(the_queues[course + '_arr'][0]);
   }
 }
+function setButtonListener() {
+  var nextbtn = document.getElementById('next');
+  nextbtn.addEventListener('click',nextRemove);
+  var bumpbtn = document.getElementById('bump');
+}
+
+
+function nextRemove (e) {
+  var userToRemove = document.getElementById('user_image_wrap').getAttribute('data-id');
+  console.log('next remove', userToRemove);
+  var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
+  console.log('user course', userCourse);
+  delete the_queues[userCourse][userToRemove];
+  var index = the_queues[userCourse + '_arr'].indexOf(userToRemove);
+  console.log('index', index);
+  if(index != -1) {
+    the_queues[userCourse + '_arr'].splice(index, 1);
+  }
+
+  createList(userCourse);
+}
+setButtonListener();
