@@ -1,0 +1,47 @@
+.flipBtnWrapper {
+  width: 180px;
+  height: 40px;
+  position: relative;
+  margin: 10px;
+}
+
+#remove_request_btn {
+  width: 180px;
+  height: 40px;
+  font-family: helvetica;
+  color: black;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid black;
+  background-color: red;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.flipBtn {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  font-family: helvetica;
+  color: black;
+  text-align: center;
+  line-height: 40px;
+  border: 1px solid black;
+  transform-style: preserve-3d;
+  transition: transform 350ms;
+}
+
+#enter_queue {
+  background-color: green;
+  backface-visibility: hidden;
+  transform: rotateX(0deg);
+  cursor: pointer;
+}
+
+#pause_resume {
+  background-color: yellow;
+  backface-visibility: hidden;
+  transform: rotateX(180deg);
+  cursor: pointer;
+  margin-top: -40px;
+}

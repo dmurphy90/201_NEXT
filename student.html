@@ -4,6 +4,7 @@
     <title>NEXT! TA Help System - Student</title>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/student.css">
   </head>
   <body>
     <header>
@@ -12,70 +13,51 @@
       <h1>Student View</h1>
     </header>
     <main>
-      <section class="problem_otd">
-        <h2>Problem of the Day</h2>
-        <p>Hong Kong Phooey, number one super guy. Hong Kong Phooey, quicker than the human eye. He's got style, a groovy style, and a car that just won't stop.</p>
-        <p> When the going gets tough, he's really rough, with a Hong Kong Phooey chop (Hi-Ya!). Hong Kong Phooey, number one super guy. Hong Kong Phooey, quicker than the human eye. Hong Kong Phooey, he's fan-riffic!</p>
+      <section>
+        <div class="problem_otd">
+          <h2>Problem of the Day</h2>
+          <p id="current_potd">Hong Kong Phooey, number one super guy. Hong Kong Phooey, quicker than the human eye. He's got style, a groovy style, and a car that just won't stop.</p>
+        </div>
       </section>
       <section class="student_q">
         <ol id="queue" class="student">
-
         </ol>
       </section>
       <section class="student_options">
         <div class="left">
-          <form id="request_options">
-            <h3>Availiable TA</h3>
-              <fieldset>
-                <label for="pick_ta">Pick Available TA</label>
-                <select name="pick_ta" size="1">
-                  <option disabled selected value> - Available TAs - </option>
-                  <option value="user_ta1">TA 1</option>
-                  <option value="user_ta2">TA 2</option>
-                  <option value="user_ta3">TA 3</option>
-                </select>
-              </fieldset>
-          <!-- <ol id="available_ta" >
-            <li data-userId="user_MjAxNzEwNDY2MzI0"><span class="course_focus">javascript</span><span class="course_num">401</span><span class="name">Fred</span></li>
-            <li data-userId="user_MjAxNzEwNDY2MzI1"><span class="course_focus">python</span><span class="course_num">301</span><span class="name">Daffney</span></li>
-            <li data-userId="user_MjAxNzEwNDY2MzI2"><span class="course_focus">javascript</span><span class="course_num">401</span><span class="name">Thelma</span></li>
-            <li data-userId="user_MjAxNzEwNDY2MzI3"><span class="course_focus">javascript</span><span class="course_num">102</span><span class="name">Shaggy</span></li>
-            <li data-userId="user_MjAxNzEwNDY2MzI4"><span class="course_focus">javascript</span><span class="course_num">201</span><span class="name">Scoobie</span></li>
-            <li data-userId="user_MjAxNzEwNDY2MzI5"><span class="course_focus">javascript</span><span class="course_num">101</span><span class="name">Capt Caveman</span></li>
-          </ol> -->
-            <h3>Problem Type</h3>
-<!-- A dropdown menu of all BusMall products (<select> and <option> will be needed) -->
-            <fieldset>
-              <label for="problem">Problem Type</label>
-              <select name="problem" size="1">
-                <option disabled selected value> - Problem - </option>
-                <option value="code_error">Code Error</option>
-                <option value="problem_domain">Problem Domain</option>
-                <option value="git">Git</option>
-                <option value="styling">Styling</option>
-                <option value="other">Other</option>
-              </select>
-            </fieldset>
-          </form>
-          <!-- <ol id="problem_type">
-            <li>I don't understand</li>
-            <li>This doesn't work</li>
-            <li>My computer crashed</li>
-            <li>I created an infinite loop</li>
-            <li>loops don't work on my computer</li>
-            <li>i? j? are they the same</li>
-          </ol> -->
+          <h3>Availiable TA</h3>
+            <select id="pick_ta" name="pick_ta" size="1">
+              <option selected value> - Next Available - </option>
+              <option value="user_ta1">TA 1</option>
+              <option value="user_ta2">TA 2</option>
+              <option value="user_ta3">TA 3</option>
+            </select>
+        <h3>Problem Type</h3>
+          <select id="prob_type" name="problem_type" size="1">
+            <option selected value> - Unspecified - </option>
+            <option value="code_error">Code Error</option>
+            <option value="problem_domain">Problem Domain</option>
+            <option value="git">Git</option>
+            <option value="styling">Styling</option>
+            <option value="other">Other</option>
+          </select>
         </div>
         <div class="right">
-          <button id="enter_queue_btn">Enter Queue</button>
-          <button id="pause_resume_btn">Pause/Resume</button>
-          <button id="remove_request_btn">Remove from Queue</button>
+          <div class="flipBtnWrapper">
+            <div class="flipBtn">
+              <div id="enter_queue">Enter Queue</div>
+              <div id="pause_resume">Pause/Resume</div>
+            </div>
+          </div>
+          <div id="remove_request_btn">Remove Request</div>
         </div>
       </section>
     </main>
     <footer>
     </footer>
+    <script src="js/potd.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/student_sandbox.js"></script>
     <script src="js/student.js"></script>
   </body>
 </html>
