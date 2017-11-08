@@ -1,8 +1,8 @@
 'use strict';
 
 var potdButton = document.getElementById('problem_otd_button');
-var popup = document.getElementById('potd_popup');
-var overlay = document.getElementById('potd_overlay');
+var potdPopup = document.getElementById('potd_popup');
+var potdOverlay = document.getElementById('potd_overlay');
 var potdSubmit = document.getElementById('submit_potd');
 var potdCancel = document.getElementById('cancel_potd');
 var potdForm = document.getElementById('potd_form');
@@ -11,12 +11,12 @@ var problemOtd = document.getElementsByClassName('problem_otd');
 var para = document.createElement('p');
 
 function openPopup() {
-  popup.style.display = 'block';
+  potdPopup.style.display = 'block';
   console.log('hello');
 }
 
 function closePopup() {
-  popup.style.display = 'none';
+  potdPopup.style.display = 'none';
   console.log('goodbye');
 }
 
@@ -26,7 +26,7 @@ function postPotd(event) {
   var potd = event.target.potd_text.value;
   localStorage.potd = potd;
   console.log('problem of the day:', potd);
-  popup.style.display = 'none';
+  potdPopup.style.display = 'none';
 }
 
 // if (localStorage.potd) {
