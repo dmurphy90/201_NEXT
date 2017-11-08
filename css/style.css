@@ -36,6 +36,7 @@ img#header_logo {
 }
 
 main {
+	background-color: grey;
 	width: 960px;
 	height: 100%;
 	margin: 140px auto;
@@ -66,11 +67,6 @@ main {
 	width: 100%;
 	line-height: 24px;
 	margin: 20px auto;
-}
-
-#available_ta , #problem_type{
-	width: 400px;
-	line-height: 24px;
 }
 
 #queue li, #available_ta li, #problem_type li{
@@ -111,11 +107,6 @@ main {
 	display: inline-block;
 	margin-right: 30px;
 	text-align: right;
-}
-
-#user_image_wrap {
-	float:left;
-	margin:25px;
 }
 
 footer {
