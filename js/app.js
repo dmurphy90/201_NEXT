@@ -14,7 +14,7 @@ var usersData = [
   ['Hector', 'Norza', 'student ta', 'seattle-201d27'],
   ['Jamie', 'Williams', 'student', 'seattle-201d27'],
   ['Jeremy', 'Pearson', 'student', 'seattle-201d27'],
-  ['Jordan', 'Van Ness', 'student', 'seattle-201d27'],
+  ['Jordan', 'VanNess', 'student', 'seattle-201d27'],
   ['Joshua', 'Evans', 'ta', 'seattle-201d27'],
   ['Karen', 'Perez', 'student', 'seattle-201d27'],
   ['Ken', 'Unterseher', 'student', 'seattle-201d27'],
@@ -27,7 +27,7 @@ var usersData = [
   ['Roger', 'Davenport', 'student ta', 'seattle-201d27'],
   ['Tama', 'Rushin', 'student ta', 'seattle-201d27']
 ];
-var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['Van NessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27']];
+var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27'], ['HardingM', 'Number1', 'Josh', 'seattle-301d27']];
 
 // var courses = ['seattle-201d27'];
 var coursesData = [{courseName: 'seattle-201d27', courseInstructor: 'Brian Nations'}, {courseName: 'seattle-301d27', courseInstructor: 'Brian Nations'}];
@@ -84,7 +84,7 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.requestIssue = requestIssue;
   this.requestedTA = requested_ta;
   this.requestTimeStamp = dateToday.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit'});
-  this.newli = '<span class="userid">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
+  this.newli = '<span class="' + UserId + '">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
   // this.createRequestTimeStamp();
   this.add_to_queue();
 }
