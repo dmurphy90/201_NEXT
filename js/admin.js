@@ -38,6 +38,7 @@ function set_active_course(e) {
   //get the value of the active course after it is changed
   var updated_active_course = active_course_ul.dataset.value;
   var oldUserId = document.getElementById('user_image_wrap').getAttribute('data-id');
+
   // removes user from bieng help array for their couse.
   removeFromBeingHelpedArray(current_active_course, oldUserId);
   //get the active TA
@@ -143,7 +144,12 @@ function createList(course) {
       testli.addEventListener('click', studentCardEvent);
 
     }
-    studentCard(the_queues[course + '_arr'][0]);
+    if (the_queues[course + '_arr'][0]) {
+      studentCard(the_queues[course + '_arr'][0]);
+    } else {
+      console.log('else legoman');
+      studentCard('LegoM');
+    }
 
   };
 }
@@ -161,7 +167,9 @@ function nextRemove(e) {
   console.log('next remove', userToRemove);
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
   console.log('user course', userCourse);
-  delete the_queues[userCourse][userToRemove];
+  if (userToRemove != '') {
+    delete the_queues[userCourse][userToRemove];
+  }
   removeFromBeingHelpedArray(userCourse, userToRemove);
   var index = the_queues[userCourse + '_arr'].indexOf(userToRemove);
   console.log('index', index);
@@ -174,17 +182,21 @@ function nextRemove(e) {
 function bump(e) {
   var userToBump = document.getElementById('user_image_wrap').getAttribute('data-id');
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
-  var index = the_queues[userCourse + '_arr'].indexOf(userToBump);
-  if(index != -1) {
-    the_queues[userCourse + '_arr'].splice(index, 1);
-  };
-  the_queues[userCourse + '_arr'].push(userToBump);
-  removeFromBeingHelpedArray(userCourse, userToBump);
-  createList(userCourse);
+  if (userToBump != '') {
+    var index = the_queues[userCourse + '_arr'].indexOf(userToBump);
+    if(index != -1) {
+      the_queues[userCourse + '_arr'].splice(index, 1);
+    };
+
+    the_queues[userCourse + '_arr'].push(userToBump);
+    removeFromBeingHelpedArray(userCourse, userToBump);
+    createList(userCourse);
+}
 }
 // adds the user to array of being helped for the course they are in
 function beingHelped(userId) {
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
+
   if (the_queues[userCourse + '_beingHelped'].includes(userId)) {
     return;
   } else {
@@ -201,4 +213,6 @@ function removeFromBeingHelpedArray(userCourse, userId) {
     }
   }
 }
+
+
 setButtonListener();

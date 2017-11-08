@@ -26,7 +26,8 @@ var usersData = [
   ['Mitchell', 'Massie', 'student', 'seattle-201d27'],
   ['Richard', 'Montgomery', 'student', 'seattle-201d27'],
   ['Roger', 'Davenport', 'student', 'seattle-201d27'],
-  ['Tama', 'Rushin', 'student', 'seattle-201d27']
+  ['Tama', 'Rushin', 'student', 'seattle-201d27'],
+  ['Man', 'Lego', 'student', 'seattle-201d27']
 ];
 
 var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
