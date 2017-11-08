@@ -12,6 +12,7 @@ var problemType = document.getElementById('prob_type');
 var flip_front = document.getElementById('enter_queue');
 var flip_back = document.getElementById('pause_resume');
 var remove_request_btn = document.getElementById('remove_request_btn');
+var student_requested_ta;
 
 var queueDisplay = document.getElementById('queue');
 
@@ -27,6 +28,7 @@ function createList(course) {
     newLi.setAttribute('id',userid);
     console.log('newLi', newLi);
   }
+  setPauseClass(course);
 }
 createList('seattle-201d27');
 
@@ -35,15 +37,25 @@ function student_request_event_listeners() {
     userCourse = users[sessionStorage.username].currentCourse;
     activeUser = sessionStorage.username;
   }
-  
+
   flip_front.addEventListener('click', enterQueue);
   flip_back.addEventListener('click', pauseResume);
   remove_request_btn.addEventListener('click', removeRequest);
+  pickTA.addEventListener('change', displaySelectedTA);
+}
+
+function displaySelectedTA(e) {
+  var selectedTA = document.getElementById('ta_image_wrap');
+  selectedTA.innerHTML = '';
+  var TAPic = document.createElement('img');
+  student_requested_ta = pickTA.value;
+  TAPic.setAttribute('src', users[student_requested_ta].profileImagePath);
+  selectedTA.appendChild(TAPic);
+  console.log('displayTA firing: ', 'Im here')
 }
 
 function enterQueue(e) {
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(180deg)';
-  var student_requested_ta = pickTA.value;
   var student_requestIssue = problemType.value;
   var student_request = new HelpRequest(activeUser, student_requestIssue, student_requested_ta, userCourse);
   var queueDisplay = document.getElementById('queue');
@@ -88,5 +100,11 @@ if (localStorage.potd) {
   currentPotd.innerHTML = localStorage.potd;
 }
 
+function setPauseClass(course) {
+  var pauseIds = the_queues.getPausedArray(course);
+  for (var p = 0; p < pauseIds.length; p++){
+    document.getElementById(pauseIds[p]).classList.add('pause');
+  }
+}
 
 student_request_event_listeners();
