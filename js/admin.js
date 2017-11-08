@@ -1,6 +1,6 @@
 'use strict';
 
-var test_TA = 'StuartM';
+//var test_TA = 'StuartM';
 var currentCourseToDislay = 'Unavailable';
 
 //object to hold all course objects
@@ -38,13 +38,21 @@ function set_active_course(e) {
   //get the value of the active course after it is changed
   var updated_active_course = active_course_ul.dataset.value;
 
+  var oldUserId = document.getElementById('user_image_wrap').getAttribute('data-id');
+
+  // removes user from bieng help array for their couse.
+  removeFromBeingHelpedArray(current_active_course, oldUserId);
+
   //get the active TA
-  var active_ta = test_TA;
+  //var active_ta = test_TA;
+  var active_ta = sessionStorage.username;
+  var active_user_type = users[active_ta].userType;
   //if the values are the same, then nothing changed, no update needed
   if (current_active_course === updated_active_course) return;
   createList(updated_active_course);
-
-  update_available_ta(active_ta, current_active_course, updated_active_course);
+  if (active_user_type === 'ta'){
+    update_available_ta(active_ta, current_active_course, updated_active_course);
+  }
 }
 
 function update_available_ta(active_ta, remove_from_course, add_to_course) {
@@ -84,7 +92,7 @@ function build_test_courses_data() {
   console.log('courses: ', courses);
 }
 
-function studentCard(e) {
+function studentCardEvent(e) {
   var userid;
   if (e.target.id === true) {
     userid = e.target.id;
@@ -94,21 +102,32 @@ function studentCard(e) {
     return;
   }
   var tempPic = document.getElementById('user_image_wrap');
+  tempPic.setAttribute('data-id',userid);
   tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
   var tempName = document.getElementById('student_name');
   tempName.innerText = users[userid].firstName;
 };
 
+function studentCard(user) {
+  var userid = user;
+  var tempPic = document.getElementById('user_image_wrap');
+  tempPic.setAttribute('data-id',userid);
+  tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
+  var tempName = document.getElementById('student_name');
+  tempName.innerText = users[userid].firstName;
+};
+// this builds the list everytime a change is made
 function createList(course) {
   if (course === 'Unavailable') {
     var olClear = document.getElementById('queue');
     olClear.innerHTML = '';
     return;
   }
-
   else {
     var queueDisplay = document.getElementById('queue');
     queueDisplay.innerHTML = '';
+    //reorder the request array if there are any requests on pause
+    the_queues.pause_handler(course);
     for (var a = 0; a < the_queues[course + '_arr'].length; a++) {
       var newLi = document.createElement('li');
       var userid = the_queues[course + '_arr'][a];
@@ -119,8 +138,93 @@ function createList(course) {
 
       var testli = document.getElementById(userid);
       console.log('testli',testli);
-      testli.addEventListener('click', studentCard);
-
+      testli.addEventListener('click', studentCardEvent);
     }
+    if (the_queues[course + '_arr'][0]) {
+      studentCard(the_queues[course + '_arr'][0]);
+    } else {
+      console.log('else legoman');
+      studentCard('LegoM');
+    }
+    setPauseClass(course);
+    studentCard(the_queues[course + '_arr'][0]);
+
+
+  };
+}
+
+function setButtonListener() {
+  var nextbtn = document.getElementById('next');
+  nextbtn.addEventListener('click', nextRemove);
+  var bumpbtn = document.getElementById('bump');
+  bumpbtn.addEventListener('click', bump);
+}
+
+
+function nextRemove(e) {
+  var userToRemove = document.getElementById('user_image_wrap').getAttribute('data-id');
+  console.log('next remove', userToRemove);
+  var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
+  console.log('user course', userCourse);
+
+  if (userToRemove) {
+    delete the_queues[userCourse][userToRemove];
+  }
+  removeFromBeingHelpedArray(userCourse, userToRemove);
+
+  delete the_queues[userCourse][userToRemove];
+
+  var index = the_queues[userCourse + '_arr'].indexOf(userToRemove);
+  console.log('index', index);
+  if(index != -1) {
+    the_queues[userCourse + '_arr'].splice(index, 1);
+  }
+  createList(userCourse);
+}
+
+function bump(e) {
+  var userToBump = document.getElementById('user_image_wrap').getAttribute('data-id');
+  var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
+
+  if (userToBump != '') {
+    var index = the_queues[userCourse + '_arr'].indexOf(userToBump);
+    if(index != -1) {
+      the_queues[userCourse + '_arr'].splice(index, 1);
+    };
+
+    the_queues[userCourse + '_arr'].push(userToBump);
+    removeFromBeingHelpedArray(userCourse, userToBump);
+    createList(userCourse);
   }
 }
+// adds the user to array of being helped for the course they are in
+function beingHelped(userId) {
+  var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
+
+  if (the_queues[userCourse + '_beingHelped'].includes(userId)) {
+    return;
+  } else {
+    the_queues[userCourse + '_beingHelped'].push(userId);
+  }
+  return;
+}
+// removes user from being helped status
+function removeFromBeingHelpedArray(userCourse, userId) {
+  if (userCourse != 'Unavailable') {
+    var helpedIndex = the_queues[userCourse + '_beingHelped'].indexOf(userId);
+    if(helpedIndex != -1) {
+      the_queues[userCourse + '_beingHelped'].splice(helpedIndex, 1);
+    }
+
+  }
+}
+function setPauseClass(course) {
+  var pauseIds = the_queues.getPausedArray(course);
+  for (var p = 0; p < pauseIds.length; p++){
+    document.getElementById(pauseIds[p]).classList.add('pause');
+
+  }
+}
+
+
+setButtonListener();
