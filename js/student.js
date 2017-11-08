@@ -31,10 +31,14 @@ function createList(course) {
 createList('seattle-201d27');
 
 function student_request_event_listeners() {
-  if(! sessionStorage.loginUser){
-    userCourse = 'seattle-201d27';
-    activeUser = 'MillerK';
+  if( sessionStorage.username){
+    userCourse = users[sessionStorage.username].currentCourse;
+    activeUser = sessionStorage.username;
   }
+
+  console.log('userCourse', userCourse);
+  console.log('activeUser', activeUser);
+
   flip_front.addEventListener('click', enterQueue);
   flip_back.addEventListener('click', pauseResume);
   remove_request_btn.addEventListener('click', removeRequest);
