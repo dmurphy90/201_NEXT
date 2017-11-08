@@ -1,5 +1,5 @@
 'use strict';
-
+var currentPotd = document.getElementById('current_potd');
 var logout = document.getElementById('log_out_btn')
 var dateToday = new Date();
 //object for all users
@@ -29,7 +29,9 @@ var usersData = [
   ['Tama', 'Rushin', 'student', 'seattle-201d27']
 ];
 
-var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
+var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
+
+// var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
 
 var coursesData = [{courseName: 'seattle-201d27', courseInstructor: 'Brian Nations'}, {courseName: 'seattle-301d27', courseInstructor: 'Brian Nations'}];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
@@ -68,14 +70,6 @@ User.prototype.setPermissions = function() {
   this.userPerms = this.userPermissionsOptions[this.userType];
 };
 
-function loadPotd(){
-  if (localStorage.potd) {
-    console.log('this is working');
-    currentPotd.innerHTML = '';
-    currentPotd.innerHTML = localStorage.potd;
-  }
-};
-
 function Course(courseNum, instructor) {
   this.courseNum = courseNum;
   this.instructor = instructor;
@@ -86,37 +80,40 @@ function Course(courseNum, instructor) {
 //simple constructor to hold requests and prototypes//
 function Queues(){};
 Queues.prototype.deleteRequest = function(courseId, requestId){
-  //get a reference to the request object using the requestId
-  var theRequest = this[courseId][requestId];
-  var course_request_array = this[theRequest.requestArray];
+  //get the values of the request array
+  var course_request_array = this.getRequestArray(courseId);
   //remove the requestId from the array
-  this[theRequest.requestArray] = remove_from_array(requestId, course_request_array);
+  this.setRequestArray(courseId, remove_from_array(requestId, course_request_array));
+  var course_pause_array = this.getPausedArray(courseId);
   //remove the requestId from the pause array if it exists
-  if (this[theRequest.pausedRequests].includes(requestId)){
-    this[theRequest.pausedRequests] = remove_from_array(requestId, course_request_array);
+  if (course_pause_array.includes(requestId)){
+    this.setPausedArray(courseId, remove_from_array(requestId, course_pause_array));
   }
   //delete request object
   delete this[courseId][requestId];
 };
 
 Queues.prototype.togglePauseResume = function(courseId, requestId){
+  //togle highlight for li
+  var thisRequestItem = document.getElementById(requestId);
+  thisRequestItem.classList.toggle('pause');
   //get a reference to the request object using the requestId
   var theRequest = this[courseId][requestId];
   // if the request is not in the pause array add it then exit the function
-  var course_pause_array = this[theRequest.pausedRequests];
+  var course_pause_array = this.getPausedArray(courseId);
   if (! course_pause_array.includes(requestId)){
     console.log('push to pause');
     this[theRequest.pausedRequests].push(requestId);
     return;
   }
   //if the request is in the pause array, remove it
-  this[theRequest.pausedRequests] = remove_from_array(requestId, course_pause_array);
+  this.setPausedArray(courseId, remove_from_array(requestId, course_pause_array));
 };
 
 Queues.prototype.pause_handler = function(courseId) {
-  var course_requests = this[courseId];
-  var pausedRequests = this[course_requests.pausedRequests];
-  var requestArray = this[course_requests.requestArray];
+  console.log('pause_handler');
+  var pausedRequests = this.getPausedArray(courseId);
+  var requestArray = this.getRequestArray(courseId);
   //if there are no requests on pause, exit
   if (! pausedRequests) return;
   var temp_course_array = [];
@@ -133,8 +130,22 @@ Queues.prototype.pause_handler = function(courseId) {
       temp_course_array.push(requestArray[i]);
     }
   }
-  this[course_requests.requestArray] = temp_course_array;
+  this.setRequestArray(courseId, temp_course_array);
 };
+
+Queues.prototype.getRequestArray = function(courseId){
+  return this[this[courseId].requestArray];
+};
+Queues.prototype.setRequestArray = function(courseId, values_array){
+  this[this[courseId].requestArray] = values_array;
+};
+Queues.prototype.getPausedArray = function(courseId){
+  return this[this[courseId].pausedRequests];
+};
+Queues.prototype.setPausedArray = function(courseId, values_array){
+  this[this[courseId].pausedRequests] = values_array;
+};
+
 /********************************/
 /********************************/
 
@@ -210,11 +221,11 @@ console.log('the_queues: ', the_queues);
 
 function signout(event) {
   sessionStorage.clear();
-  window.location = './index.html'
+  window.location = './index.html';
 }
 
 
 localStorage.the_queues = JSON.stringify(the_queues);
-logout.addEventListener('click', signout);
+// logout.addEventListener('click', signout);
 // var myCourse = 'seattled27';
 // the_queues[myCourse].kevin_miller_d27
