@@ -1,6 +1,6 @@
 'use strict';
 
-var test_TA = 'StuartM';
+//var test_TA = 'StuartM';
 var currentCourseToDislay = 'Unavailable';
 
 //object to hold all course objects
@@ -37,9 +37,7 @@ function set_active_course(e) {
   customSelectAction(this, e);
   //get the value of the active course after it is changed
   var updated_active_course = active_course_ul.dataset.value;
-  var oldUserId = document.getElementById('user_image_wrap').getAttribute('data-id');
-  // removes user from bieng help array for their couse.
-  removeFromBeingHelpedArray(current_active_course, oldUserId);
+
   //get the active TA
   //var active_ta = test_TA;
   var active_ta = sessionStorage.username;
@@ -88,7 +86,7 @@ function build_test_courses_data() {
   }
   console.log('courses: ', courses);
 }
-//populates student card info on click of queue name
+
 function studentCardEvent(e) {
   var userid;
   if (e.target.id === true) {
@@ -98,22 +96,15 @@ function studentCardEvent(e) {
   } else {
     return;
   }
-  var oldUserId = document.getElementById('user_image_wrap').getAttribute('data-id');
-  var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
-  removeFromBeingHelpedArray(userCourse, oldUserId);
-  beingHelped(userid);
   var tempPic = document.getElementById('user_image_wrap');
   tempPic.setAttribute('data-id',userid);
   tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
   var tempName = document.getElementById('student_name');
   tempName.innerText = users[userid].firstName;
 };
-// popluates the student card info on next or bump button
+
 function studentCard(user) {
   var userid = user;
-  var oldUserId = document.getElementById('user_image_wrap').getAttribute('data-id');
-  console.log('old user id',oldUserId);
-  beingHelped(userid);
   var tempPic = document.getElementById('user_image_wrap');
   tempPic.setAttribute('data-id',userid);
   tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
@@ -130,6 +121,8 @@ function createList(course) {
   else {
     var queueDisplay = document.getElementById('queue');
     queueDisplay.innerHTML = '';
+    //reorder the request array if there are any requests on pause
+    the_queues.pause_handler(course);
     for (var a = 0; a < the_queues[course + '_arr'].length; a++) {
       var newLi = document.createElement('li');
       var userid = the_queues[course + '_arr'][a];
@@ -143,11 +136,12 @@ function createList(course) {
       testli.addEventListener('click', studentCardEvent);
 
     }
+    setPauseClass(course);
     studentCard(the_queues[course + '_arr'][0]);
 
   };
 }
-// sets the listners on next and bump buttons
+
 function setButtonListener() {
   var nextbtn = document.getElementById('next');
   nextbtn.addEventListener('click', nextRemove);
@@ -155,14 +149,13 @@ function setButtonListener() {
   bumpbtn.addEventListener('click', bump);
 }
 
-// removes user form queue
+
 function nextRemove(e) {
   var userToRemove = document.getElementById('user_image_wrap').getAttribute('data-id');
   console.log('next remove', userToRemove);
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
   console.log('user course', userCourse);
   delete the_queues[userCourse][userToRemove];
-  removeFromBeingHelpedArray(userCourse, userToRemove);
   var index = the_queues[userCourse + '_arr'].indexOf(userToRemove);
   console.log('index', index);
   if(index != -1) {
@@ -170,7 +163,7 @@ function nextRemove(e) {
   }
   createList(userCourse);
 }
-// bumps the user to the bottom of the queue
+
 function bump(e) {
   var userToBump = document.getElementById('user_image_wrap').getAttribute('data-id');
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
@@ -179,26 +172,13 @@ function bump(e) {
     the_queues[userCourse + '_arr'].splice(index, 1);
   };
   the_queues[userCourse + '_arr'].push(userToBump);
-  removeFromBeingHelpedArray(userCourse, userToBump);
   createList(userCourse);
 }
-// adds the user to array of being helped for the course they are in
-function beingHelped(userId) {
-  var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
-  if (the_queues[userCourse + '_beingHelped'].includes(userId)) {
-    return;
-  } else {
-    the_queues[userCourse + '_beingHelped'].push(userId);
-  }
-  return;
-}
-// removes user from being helped status
-function removeFromBeingHelpedArray(userCourse, userId) {
-  if (userCourse != 'Unavailable') {
-    var helpedIndex = the_queues[userCourse + '_beingHelped'].indexOf(userId);
-    if(helpedIndex != -1) {
-      the_queues[userCourse + '_beingHelped'].splice(helpedIndex, 1);
-    }
+
+function setPauseClass(course) {
+  var pauseIds = the_queues.getPausedArray(course);
+  for (var p = 0; p < pauseIds.length; p++){
+    document.getElementById(pauseIds[p]).classList.add('pause');
   }
 }
 setButtonListener();
