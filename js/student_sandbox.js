@@ -38,10 +38,12 @@ function removeRequest(e) {
 // }
 
 function fillPage() {
-  users[sessionStorage.username].fullName;
+  var currentUser = users[sessionStorage.username].fullName;
   var currentCourse = users[sessionStorage.username].currentCourse;
   var availableTAs = courses[currentCourse].availableTA;
   console.log('TA List: ', availableTAs);
+  var studentHeader = document.getElementById('student_header');
+  studentHeader.innerHTML = currentUser;
   var addTA = document.getElementById('pick_ta');
   for (var i = 0; i < availableTAs.length; i++) {
     var optionTA = document.createElement('option');
