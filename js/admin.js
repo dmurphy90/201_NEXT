@@ -108,6 +108,7 @@ function studentCard(user) {
   var tempName = document.getElementById('student_name');
   tempName.innerText = users[userid].firstName;
 };
+// this builds the list everytime a change is made
 function createList(course) {
   if (course === 'Unavailable') {
     var olClear = document.getElementById('queue');
@@ -131,8 +132,10 @@ function createList(course) {
 
     }
     studentCard(the_queues[course + '_arr'][0]);
-  }
+
+  };
 }
+
 function setButtonListener() {
   var nextbtn = document.getElementById('next');
   nextbtn.addEventListener('click', nextRemove);
@@ -141,7 +144,7 @@ function setButtonListener() {
 }
 
 
-function nextRemove (e) {
+function nextRemove(e) {
   var userToRemove = document.getElementById('user_image_wrap').getAttribute('data-id');
   console.log('next remove', userToRemove);
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
@@ -152,7 +155,6 @@ function nextRemove (e) {
   if(index != -1) {
     the_queues[userCourse + '_arr'].splice(index, 1);
   }
-
   createList(userCourse);
 }
 
