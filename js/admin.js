@@ -43,6 +43,7 @@ function set_active_course(e) {
   //if the values are the same, then nothing changed, no update needed
   if (current_active_course === updated_active_course) return;
   createList(updated_active_course);
+
   update_available_ta(active_ta, current_active_course, updated_active_course);
 }
 
@@ -83,6 +84,21 @@ function build_test_courses_data() {
   console.log('courses: ', courses);
 }
 
+function studentCard(e) {
+  var userid;
+  if (e.target.id === true) {
+    userid = e.target.id;
+  } else if (e.target.parentNode.id) {
+    userid = e.target.parentNode.id;
+  } else {
+    return;
+  }
+  var tempPic = document.getElementById('user_image_wrap');
+  tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
+  var tempName = document.getElementById('student_name');
+  tempName.innerText = users[userid].firstName;
+};
+
 function createList(course) {
   if (course === 'Unavailable') {
     var olClear = document.getElementById('queue');
@@ -92,13 +108,19 @@ function createList(course) {
 
   else {
     var queueDisplay = document.getElementById('queue');
+    queueDisplay.innerHTML = '';
     for (var a = 0; a < the_queues[course + '_arr'].length; a++) {
       var newLi = document.createElement('li');
       var userid = the_queues[course + '_arr'][a];
+      console.log('user id before appending',userid);
       newLi.innerHTML = (a + 1 + '    ') + the_queues[course][userid].newli;
       queueDisplay.appendChild(newLi);
-      newLi.setAttribute('userid',userid);
-      console.log('newLi', newLi);
+      newLi.setAttribute('id',userid);
+
+      var testli = document.getElementById(userid);
+      console.log('testli',testli);
+      testli.addEventListener('click', studentCard);
+
     }
-}
+  }
 }

@@ -20,7 +20,7 @@ function createList(course) {
     var userid = the_queues[course + '_arr'][a];
     newLi.innerHTML = (a + 1 + '    ') + the_queues[course][userid].newli;
     queueDisplay.appendChild(newLi);
-    newLi.setAttribute('userid',userid);
+    newLi.setAttribute('id',userid);
     console.log('newLi', newLi);
   }
 }
