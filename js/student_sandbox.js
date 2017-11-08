@@ -27,11 +27,19 @@ function enterQueue(e) {
   console.log('Pick TA: ', pickTA.value);
   console.log('Problem Type: ', problemType.value);
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(180deg)';
+  remove_request_btn.classList.toggle('active');
 };
 
 function removeRequest(e) {
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(0deg)';
+  remove_request_btn.classList.toggle('active');
 }
 
 function pauseResume(e) {
 }
+
+function setStudentHeader() {
+  users[sessionStorage.username].fullName;
+}
+
+setStudentHeader();
