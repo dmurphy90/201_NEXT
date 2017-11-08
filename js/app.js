@@ -1,5 +1,6 @@
 'use strict';
 
+var logout = document.getElementById('log_out_btn')
 var dateToday = new Date();
 //object for all users
 var users = {};
@@ -131,9 +132,13 @@ for (var i = 0; i < testProblems.length; i++) {
 
 console.log('the_queues: ', the_queues);
 
-
+function signout(event) {
+  sessionStorage.clear();
+  window.location = './index.html'
+}
 
 
 localStorage.the_queues = JSON.stringify(the_queues);
+logout.addEventListener('click', signout);
 // var myCourse = 'seattled27';
 // the_queues[myCourse].kevin_miller_d27
