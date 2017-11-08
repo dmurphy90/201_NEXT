@@ -35,10 +35,7 @@ function student_request_event_listeners() {
     userCourse = users[sessionStorage.username].currentCourse;
     activeUser = sessionStorage.username;
   }
-
-  console.log('userCourse', userCourse);
-  console.log('activeUser', activeUser);
-
+  
   flip_front.addEventListener('click', enterQueue);
   flip_back.addEventListener('click', pauseResume);
   remove_request_btn.addEventListener('click', removeRequest);
