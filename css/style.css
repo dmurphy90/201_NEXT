@@ -109,6 +109,10 @@ main {
 	text-align: right;
 }
 
+.clearFix {
+	clear: both;
+}
+
 footer {
 	height: 80px;
 	width:100%;

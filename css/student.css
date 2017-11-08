@@ -5,7 +5,7 @@
 .student_q {
   background-color: beige;
 	margin: 20px 10px 20px 20px;
-	width: 540px;
+	width: 500px;
   /*display: inline-block;*/
   position: absolute;
   left: 0;
@@ -14,7 +14,7 @@
 .student_options {
   background-color: beige;
 	margin: 20px 20px 20px 10px;
-	width: 360px;
+	width: 400px;
   /*display: inline-block;*/
   position: absolute;
   right: 0;
@@ -31,7 +31,7 @@
 .problem_type_box {
   /*border: 1px dotted red;*/
   position: absolute;
-  top: 100px;
+  top: 80px;
   left: 10px;
 }
 
@@ -77,10 +77,12 @@ select {
   padding: 10px 20px;
   border: solid #000000 1px;
   margin: 10px;
+  width: 110px;
+  text-align: center;
   pointer-events: none;
   display: inline-block;
   position: absolute;
-  bottom: 10px;
+  top: 150px;
   left: 10px;
 }
 
@@ -111,8 +113,8 @@ select {
   /*height: 36px;*/
   margin: 10px;
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  top: 210px;
+  left: 10px;
 }
 
 .flipBtn {
