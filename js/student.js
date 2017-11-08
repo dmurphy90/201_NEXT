@@ -41,8 +41,6 @@ function student_request_event_listeners() {
 }
 
 function enterQueue(e) {
-  console.log('Pick TA: ', pickTA.value);
-  console.log('Problem Type: ', problemType.value);
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(180deg)';
   var student_requested_ta = pickTA.value;
   var student_requestIssue = problemType.value;
@@ -81,37 +79,6 @@ function pause_handler(aCourse){
     }
   }
   the_queues[aCourse.requestArray] = temp_course_array;
-}
-
-/*
-function pause_handler(aCourse){
-  //if there are no requests on pause, exit
-  if (! the_queues[aCourse + pause_array_suffix]) return;
-  var temp_course_array = [];
-  var pause_request_array = the_queues[aCourse + pause_array_suffix];
-  var course_request_array = the_queues[userCourse + request_array_suffix];
-  for (var i = 0; i < course_request_array.length; i++){
-    if (pause_request_array.includes(course_request_array[i])){
-      temp_course_array.push(course_request_array[i + 1]);
-      temp_course_array.push(course_request_array[i]);
-      i++;
-    } else {
-      temp_course_array.push(course_request_array[i]);
-    }
-  }
-  return temp_course_array;
-}
-*/
-
-function remove_from_array(arrayItem, check_array){
-  var temp_array = [];
-  console.log('check_array', check_array);
-  if(!check_array) return temp_array;
-  for (var i = 0; i < check_array.length; i++){
-    if(check_array[i] != arrayItem) temp_array.push(check_array[i]);
-  }
-  console.log('temp_array',temp_array);
-  return temp_array;
 }
 
 student_request_event_listeners();

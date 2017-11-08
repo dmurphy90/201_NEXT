@@ -27,15 +27,12 @@ var usersData = [
   ['Roger', 'Davenport', 'student ta', 'seattle-201d27'],
   ['Tama', 'Rushin', 'student ta', 'seattle-201d27']
 ];
+
 var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['Van NessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
 
-// var courses = ['seattle-201d27'];
 var coursesData = [{courseName: 'seattle-201d27', courseInstructor: 'Brian Nations'}, {courseName: 'seattle-301d27', courseInstructor: 'Brian Nations'}];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
 
-//var the_queues = new Queues();
-
-//function User(firstName, lastName, userType, currentCourse, courseFocus){
 function User(firstName, lastName, userType, course){
   this.userId;
   this.firstName = firstName;
@@ -123,44 +120,22 @@ Queues.prototype.pause_handler = function(courseId) {
   if (! pausedRequests) return;
   var temp_course_array = [];
   for (var i = 0; i < requestArray.length; i++){
-    //if the request is on pause, push the next request first
-    if (pausedRequests.includes(requestArray[i])){
-      temp_course_array.push(requestArray[i + 1]);
-      temp_course_array.push(requestArray[i]);
-      i++;
-    } else {
+    if(pausedRequests.includes(requestArray[i])){
+      for (var j = i + 1; j < requestArray.length; j++){
+        if (!pausedRequests.includes(requestArray[j]) && !temp_course_array.includes(requestArray[j]) ){
+          temp_course_array.push(requestArray[j]);
+          temp_course_array.push(requestArray[i]);
+          break;
+        }
+      }
+    } else if (!temp_course_array.includes(requestArray[i])) {
       temp_course_array.push(requestArray[i]);
     }
   }
   this[course_requests.requestArray] = temp_course_array;
 };
-
-/*
-for (var i = 0; i < arr.length; i++){
-
-  if(arrPause.includes(arr[i])){
-    for (var j = i + 1; j < arr.length; j++){
-      if (!arrPause.includes(arr[j])){
-        if (!tempArray.includes(arr[j]))
-        tempArray.push(arr[j]);
-        tempArray.push(arr[i])
-        break;
-      }
-    }
-    //tempArray.push()
-   } else{
-     if (!tempArray.includes(arr[i])){
-      tempArray.push(arr[i])
-     }
-   }
-
-}
-*/
-
 /********************************/
 /********************************/
-
-
 
 function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.UserId = UserId;
@@ -175,14 +150,6 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.add_to_queue();
 }
 
-
-// HelpRequest.prototype.add_to_queue = function(){
-//   if (!the_queues[this.course]) the_queues[this.course] = {};
-//   the_queues[this.course][this.UserId] = this;
-//   if (!the_queues[this.course + '_arr']) the_queues[this.course + '_arr'] = [];
-//   the_queues[this.course + '_arr'].push(this.UserId);
-// };
-
 HelpRequest.prototype.add_to_queue = function(){
   if (!the_queues[this.course]) the_queues[this.course] = {};
   the_queues[this.course][this.UserId] = this;
@@ -193,7 +160,6 @@ HelpRequest.prototype.add_to_queue = function(){
   the_queues[this.requestArray].push(this.UserId);
   if (!the_queues[this.pausedRequests]) the_queues[this.pausedRequests] = [];
 };
-
 
 HelpRequest.prototype.togglePauseResume = function(){
   // if the request is not in the pause array add it then exit the function
@@ -209,12 +175,10 @@ HelpRequest.prototype.togglePauseResume = function(){
 
 function remove_from_array(arrayItem, check_array){
   var temp_array = [];
-  console.log('check_array', check_array);
   if(!check_array) return temp_array;
   for (var i = 0; i < check_array.length; i++){
     if(check_array[i] != arrayItem) temp_array.push(check_array[i]);
   }
-  console.log('temp_array',temp_array);
   return temp_array;
 }
 
@@ -224,7 +188,6 @@ function build_users_object(){
     the_user = create_user_from_data.apply(this, usersData[i]);
     users[the_user.userId] = the_user;
   }
-  console.log('users', users);
 }
 //this function creates a new User
 function create_user_from_data(firstName, lastName, userType, course){
@@ -233,19 +196,12 @@ function create_user_from_data(firstName, lastName, userType, course){
 
 build_users_object();
 
-
 var the_queues = new Queues();
 // this is just for testing, the HelpRequest needs to be called once the student clicks add to //queue button
 for (var i = 0; i < testProblems.length; i++) {
   new HelpRequest(testProblems[i][0],testProblems[i][1],testProblems[i][2],testProblems[i][3]);
 };
 
-
 console.log('the_queues: ', the_queues);
 
-
-
-
 localStorage.the_queues = JSON.stringify(the_queues);
-// var myCourse = 'seattled27';
-// the_queues[myCourse].kevin_miller_d27
