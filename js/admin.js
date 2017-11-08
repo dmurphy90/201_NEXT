@@ -135,8 +135,9 @@ function createList(course) {
 }
 function setButtonListener() {
   var nextbtn = document.getElementById('next');
-  nextbtn.addEventListener('click',nextRemove);
+  nextbtn.addEventListener('click', nextRemove);
   var bumpbtn = document.getElementById('bump');
+  bumpbtn.addEventListener('click', bump);
 }
 
 
@@ -152,6 +153,17 @@ function nextRemove (e) {
     the_queues[userCourse + '_arr'].splice(index, 1);
   }
 
+  createList(userCourse);
+}
+
+function bump(e) {
+  var userToBump = document.getElementById('user_image_wrap').getAttribute('data-id');
+  var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
+  var index = the_queues[userCourse + '_arr'].indexOf(userToBump);
+  if(index != -1) {
+    the_queues[userCourse + '_arr'].splice(index, 1);
+  };
+  the_queues[userCourse + '_arr'].push(userToBump);
   createList(userCourse);
 }
 setButtonListener();
