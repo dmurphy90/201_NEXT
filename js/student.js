@@ -27,6 +27,7 @@ function createList(course) {
     newLi.setAttribute('id',userid);
     console.log('newLi', newLi);
   }
+  setPauseClass(course);
 }
 createList('seattle-201d27');
 
@@ -35,7 +36,7 @@ function student_request_event_listeners() {
     userCourse = users[sessionStorage.username].currentCourse;
     activeUser = sessionStorage.username;
   }
-  
+
   flip_front.addEventListener('click', enterQueue);
   flip_back.addEventListener('click', pauseResume);
   remove_request_btn.addEventListener('click', removeRequest);
@@ -88,5 +89,11 @@ if (localStorage.potd) {
   currentPotd.innerHTML = localStorage.potd;
 }
 
+function setPauseClass(course) {
+  var pauseIds = the_queues.getPausedArray(course);
+  for (var p = 0; p < pauseIds.length; p++){
+    document.getElementById(pauseIds[p]).classList.add('pause');
+  }
+}
 
 student_request_event_listeners();
