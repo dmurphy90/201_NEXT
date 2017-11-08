@@ -80,38 +80,40 @@ function Course(courseNum, instructor) {
 //simple constructor to hold requests and prototypes//
 function Queues(){};
 Queues.prototype.deleteRequest = function(courseId, requestId){
-  //get a reference to the request object using the requestId
-  var theRequest = this[courseId][requestId];
-  var course_request_array = this[theRequest.requestArray];
+  //get the values of the request array
+  var course_request_array = this.getRequestArray(courseId);
   //remove the requestId from the array
-  this[theRequest.requestArray] = remove_from_array(requestId, course_request_array);
+  this.setRequestArray(courseId, remove_from_array(requestId, course_request_array));
+  var course_pause_array = this.getPausedArray(courseId);
   //remove the requestId from the pause array if it exists
-  if (this[theRequest.pausedRequests].includes(requestId)){
-    this[theRequest.pausedRequests] = remove_from_array(requestId, this[theRequest.pausedRequests]);
+  if (course_pause_array.includes(requestId)){
+    this.setPausedArray(courseId, remove_from_array(requestId, course_pause_array));
   }
   //delete request object
   delete this[courseId][requestId];
 };
 
 Queues.prototype.togglePauseResume = function(courseId, requestId){
+  //togle highlight for li
+  var thisRequestItem = document.getElementById(requestId);
+  thisRequestItem.classList.toggle('pause');
   //get a reference to the request object using the requestId
   var theRequest = this[courseId][requestId];
   // if the request is not in the pause array add it then exit the function
-  var course_pause_array = this[theRequest.pausedRequests];
+  var course_pause_array = this.getPausedArray(courseId);
   if (! course_pause_array.includes(requestId)){
     console.log('push to pause');
     this[theRequest.pausedRequests].push(requestId);
     return;
   }
   //if the request is in the pause array, remove it
-  this[theRequest.pausedRequests] = remove_from_array(requestId, course_pause_array);
+  this.setPausedArray(courseId, remove_from_array(requestId, course_pause_array));
 };
 
 Queues.prototype.pause_handler = function(courseId) {
   console.log('pause_handler');
-  var course_requests = this[courseId];
-  var pausedRequests = this[course_requests.pausedRequests];
-  var requestArray = this[course_requests.requestArray];
+  var pausedRequests = this.getPausedArray(courseId);
+  var requestArray = this.getRequestArray(courseId);
   //if there are no requests on pause, exit
   if (! pausedRequests) return;
   var temp_course_array = [];
@@ -128,8 +130,22 @@ Queues.prototype.pause_handler = function(courseId) {
       temp_course_array.push(requestArray[i]);
     }
   }
-  this[course_requests.requestArray] = temp_course_array;
+  this.setRequestArray(courseId, temp_course_array);
 };
+
+Queues.prototype.getRequestArray = function(courseId){
+  return this[this[courseId].requestArray];
+};
+Queues.prototype.setRequestArray = function(courseId, values_array){
+  this[this[courseId].requestArray] = values_array;
+};
+Queues.prototype.getPausedArray = function(courseId){
+  return this[this[courseId].pausedRequests];
+};
+Queues.prototype.setPausedArray = function(courseId, values_array){
+  this[this[courseId].pausedRequests] = values_array;
+};
+
 /********************************/
 /********************************/
 
@@ -202,7 +218,7 @@ console.log('the_queues: ', the_queues);
 
 function signout(event) {
   sessionStorage.clear();
-  window.location = './index.html'
+  window.location = './index.html';
 }
 
 
