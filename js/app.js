@@ -1,5 +1,6 @@
 'use strict';
 
+var logout = document.getElementById('log_out_btn')
 var dateToday = new Date();
 //object for all users
 var users = {};
@@ -14,7 +15,7 @@ var usersData = [
   ['Hector', 'Norza', 'student ta', 'seattle-201d27'],
   ['Jamie', 'Williams', 'student', 'seattle-201d27'],
   ['Jeremy', 'Pearson', 'student', 'seattle-201d27'],
-  ['Jordan', 'Van Ness', 'student', 'seattle-201d27'],
+  ['Jordan', 'VanNess', 'student', 'seattle-201d27'],
   ['Joshua', 'Evans', 'ta', 'seattle-201d27'],
   ['Karen', 'Perez', 'student', 'seattle-201d27'],
   ['Ken', 'Unterseher', 'student', 'seattle-201d27'],
@@ -145,7 +146,7 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.requestIssue = requestIssue;
   this.requestedTA = requested_ta;
   this.requestTimeStamp = dateToday.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit'});
-  this.newli = '<span class="userid">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
+  this.newli = '<span class="' + UserId + '">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
   // this.createRequestTimeStamp();
   this.add_to_queue();
 }
@@ -204,4 +205,13 @@ for (var i = 0; i < testProblems.length; i++) {
 
 console.log('the_queues: ', the_queues);
 
+function signout(event) {
+  sessionStorage.clear();
+  window.location = './index.html'
+}
+
+
 localStorage.the_queues = JSON.stringify(the_queues);
+logout.addEventListener('click', signout);
+// var myCourse = 'seattled27';
+// the_queues[myCourse].kevin_miller_d27

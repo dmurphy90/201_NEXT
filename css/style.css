@@ -29,7 +29,7 @@ header h1 {
 }
 
 main {
-	width: 1200px;
+	width: 960px;
 	height: 100%;
 	margin: 140px auto;
 	outline: 1px dashed;
@@ -53,13 +53,6 @@ main {
 	width: 1000px;
 	margin: 0 auto;
 	padding: 5px 10px;
-}
-
-.student_q {
-	margin: 0  auto;
-	margin-top: 20px;
-	width: 960px;
-	outline: 1px dashed;
 }
 
 #queue {
@@ -111,39 +104,6 @@ main {
 	display: inline-block;
 	margin-right: 30px;
 	text-align: right;
-}
-
-.student_options {
-	margin: 0 auto;
-	margin-top: 20px;
-	width: 1000px;
-	outline: 1px dashed;
-	height: 160px;
-}
-
-.student_options .left{
-	display: inline-block;
-	float: left;
-}
-
-.student_options .left h3 {
-	text-align: center;
-	margin: 10px 0;
-	font-size: 20px;
-}
-
-.student_options .right{
-	margin: 10px 0;
-	display: inline-block;
-	float: right;
-}
-
-.student_options .right button {
-	display: block;
-	width: 220px;
-	padding: 8px 12px;
-	font-size: 16px;
-	margin: 10px;
 }
 
 .ta_view_right {
