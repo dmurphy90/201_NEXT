@@ -207,6 +207,6 @@ function signout(event) {
 
 
 localStorage.the_queues = JSON.stringify(the_queues);
-logout.addEventListener('click', signout);
+// logout.addEventListener('click', signout);
 // var myCourse = 'seattled27';
 // the_queues[myCourse].kevin_miller_d27
