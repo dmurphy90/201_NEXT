@@ -21,34 +21,39 @@
           <p id="current_potd">Hong Kong Phooey, number one super guy. Hong Kong Phooey, quicker than the human eye. He's got style, a groovy style, and a car that just won't stop.</p>
         </div>
       </section>
-      <section class="student_q">
-        <ol id="queue" class="student">
-        </ol>
-      </section>
-      <section class="student_options">
-        <div class="available_ta_box">
-          <h3>Availiable TA</h3>
-          <select id="pick_ta" name="pick_ta" size="1">
-            <option selected value> - Next Available - </option>
-          </select>
+      <section id="q_and_options">
+        <div class="student_q">
+          <ol id="queue" class="student">
+          </ol>
         </div>
-        <div class="problem_type_box">
-          <h3>Problem Type</h3>
-          <select id="prob_type" name="problem_type" size="1">
-            <option selected value> - Unspecified - </option>
-            <option value="code_error">Code Error</option>
-            <option value="problem_domain">Problem Domain</option>
-            <option value="git">Git</option>
-            <option value="styling">Styling</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-        <div class="bottom">
-          <div id="remove_request_btn">Leave Line</div>
-          <div class="flipBtnWrapper">
-            <div class="flipBtn">
-              <div id="enter_queue">Get in Line</div>
-              <div id="pause_resume">Pause/Resume</div>
+        <div class="student_options">
+          <div class="available_ta_box">
+            <h3>Availiable TA</h3>
+            <select id="pick_ta" name="pick_ta" size="1">
+              <option selected value> - Next Available - </option>
+            </select>
+          </div>
+          <div id="ta_image_wrap">
+            <!-- TA Profile pic -->
+          </div>
+          <div class="problem_type_box">
+            <h3>Problem Type</h3>
+            <select id="prob_type" name="problem_type" size="1">
+              <option selected value> - Unspecified - </option>
+              <option value="code_error">Code Error</option>
+              <option value="problem_domain">Problem Domain</option>
+              <option value="git">Git</option>
+              <option value="styling">Styling</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="bottom">
+            <div id="remove_request_btn">Leave Line</div>
+            <div id="flipBtnWrapper">
+              <div class="flipBtn">
+                <div id="enter_queue">Get in Line</div>
+                <div id="pause_resume">Pause/Resume</div>
+              </div>
             </div>
           </div>
         </div>
