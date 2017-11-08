@@ -81,4 +81,11 @@ function pause_handler(aCourse){
   the_queues[aCourse.requestArray] = temp_course_array;
 }
 
+if (localStorage.potd) {
+  console.log('this is working');
+  currentPotd.innerHTML = '';
+  currentPotd.innerHTML = localStorage.potd;
+}
+
+
 student_request_event_listeners();
