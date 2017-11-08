@@ -39,12 +39,15 @@ function set_active_course(e) {
   var updated_active_course = active_course_ul.dataset.value;
 
   //get the active TA
-  var active_ta = test_TA;
+  //var active_ta = test_TA;
+  var active_ta = sessionStorage.username;
+  var active_user_type = users[active_ta].userType;
   //if the values are the same, then nothing changed, no update needed
   if (current_active_course === updated_active_course) return;
   createList(updated_active_course);
-
-  update_available_ta(active_ta, current_active_course, updated_active_course);
+  if (active_user_type === 'ta'){
+    update_available_ta(active_ta, current_active_course, updated_active_course);
+  }
 }
 
 function update_available_ta(active_ta, remove_from_course, add_to_course) {
