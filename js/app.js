@@ -143,6 +143,7 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.course = course;
   this.requestArray = course + '_arr';
   this.pausedRequests = course + '_pause';
+  this.beingHelped = course + '_beingHelped';
   this.requestIssue = requestIssue;
   this.requestedTA = requested_ta;
   this.requestTimeStamp = dateToday.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit'});
@@ -157,9 +158,11 @@ HelpRequest.prototype.add_to_queue = function(){
   //add the pause and request array keys to the object for reference
   the_queues[this.course]['requestArray'] = this.requestArray;
   the_queues[this.course]['pausedRequests'] = this.pausedRequests;
+  the_queues[this.course]['beingHelped'] = this.beingHelped;
   if (!the_queues[this.requestArray]) the_queues[this.requestArray] = [];
   the_queues[this.requestArray].push(this.UserId);
   if (!the_queues[this.pausedRequests]) the_queues[this.pausedRequests] = [];
+  if (!the_queues[this.beingHelped]) the_queues[this.beingHelped] = [];
 };
 
 HelpRequest.prototype.togglePauseResume = function(){
