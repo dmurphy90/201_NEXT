@@ -27,13 +27,13 @@ var usersData = [
   ['Roger', 'Davenport', 'student ta', 'seattle-201d27'],
   ['Tama', 'Rushin', 'student ta', 'seattle-201d27']
 ];
-var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['Van NessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
+var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['Van NessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
 
 // var courses = ['seattle-201d27'];
 var coursesData = [{courseName: 'seattle-201d27', courseInstructor: 'Brian Nations'}, {courseName: 'seattle-301d27', courseInstructor: 'Brian Nations'}];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
 
-var the_queues = new Queues();
+//var the_queues = new Queues();
 
 //function User(firstName, lastName, userType, currentCourse, courseFocus){
 function User(firstName, lastName, userType, course){
@@ -44,9 +44,9 @@ function User(firstName, lastName, userType, course){
   this.userType = userType;
   this.userPermissionsOptions = {
     ta: 'admin',
-    student: 'basic',
+    student: 'student',
     instructor: 'admin',
-    supportStaff: 'basic'
+    supportStaff: 'admin'
   };
   this.userPerms;
   this.currentCourse = course;
@@ -84,11 +84,89 @@ function Course(courseNum, instructor) {
   this.availableTA = [];
 }
 
+/*****************************************************/
+//simple constructor to hold requests and prototypes//
 function Queues(){};
+Queues.prototype.deleteRequest = function(courseId, requestId){
+  //get a reference to the request object using the requestId
+  var theRequest = this[courseId][requestId];
+  var course_request_array = this[theRequest.requestArray];
+  //remove the requestId from the array
+  this[theRequest.requestArray] = remove_from_array(requestId, course_request_array);
+  //remove the requestId from the pause array if it exists
+  if (this[theRequest.pausedRequests].includes(requestId)){
+    this[theRequest.pausedRequests] = remove_from_array(requestId, course_request_array);
+  }
+  //delete request object
+  delete this[courseId][requestId];
+};
+
+Queues.prototype.togglePauseResume = function(courseId, requestId){
+  //get a reference to the request object using the requestId
+  var theRequest = this[courseId][requestId];
+  // if the request is not in the pause array add it then exit the function
+  var course_pause_array = this[theRequest.pausedRequests];
+  if (! course_pause_array.includes(requestId)){
+    console.log('push to pause');
+    this[theRequest.pausedRequests].push(requestId);
+    return;
+  }
+  //if the request is in the pause array, remove it
+  this[theRequest.pausedRequests] = remove_from_array(requestId, course_pause_array);
+};
+
+Queues.prototype.pause_handler = function(courseId) {
+  var course_requests = this[courseId];
+  var pausedRequests = this[course_requests.pausedRequests];
+  var requestArray = this[course_requests.requestArray];
+  //if there are no requests on pause, exit
+  if (! pausedRequests) return;
+  var temp_course_array = [];
+  for (var i = 0; i < requestArray.length; i++){
+    //if the request is on pause, push the next request first
+    if (pausedRequests.includes(requestArray[i])){
+      temp_course_array.push(requestArray[i + 1]);
+      temp_course_array.push(requestArray[i]);
+      i++;
+    } else {
+      temp_course_array.push(requestArray[i]);
+    }
+  }
+  this[course_requests.requestArray] = temp_course_array;
+};
+
+/*
+for (var i = 0; i < arr.length; i++){
+
+  if(arrPause.includes(arr[i])){
+    for (var j = i + 1; j < arr.length; j++){
+      if (!arrPause.includes(arr[j])){
+        if (!tempArray.includes(arr[j]))
+        tempArray.push(arr[j]);
+        tempArray.push(arr[i])
+        break;
+      }
+    }
+    //tempArray.push()
+   } else{
+     if (!tempArray.includes(arr[i])){
+      tempArray.push(arr[i])
+     }
+   }
+
+}
+*/
+
+/********************************/
+/********************************/
+
+
 
 function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.UserId = UserId;
   this.course = course;
+  this.requestArray = course + '_arr';
+  this.pausedRequests = course + '_pause';
   this.requestIssue = requestIssue;
   this.requestedTA = requested_ta;
   this.requestTimeStamp = dateToday.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit'});
@@ -98,13 +176,47 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
 }
 
 
+// HelpRequest.prototype.add_to_queue = function(){
+//   if (!the_queues[this.course]) the_queues[this.course] = {};
+//   the_queues[this.course][this.UserId] = this;
+//   if (!the_queues[this.course + '_arr']) the_queues[this.course + '_arr'] = [];
+//   the_queues[this.course + '_arr'].push(this.UserId);
+// };
+
 HelpRequest.prototype.add_to_queue = function(){
   if (!the_queues[this.course]) the_queues[this.course] = {};
   the_queues[this.course][this.UserId] = this;
-  if (!the_queues[this.course + '_arr']) the_queues[this.course + '_arr'] = [];
-  the_queues[this.course + '_arr'].push(this.UserId);
+  //add the pause and request array keys to the object for reference
+  the_queues[this.course]['requestArray'] = this.requestArray;
+  the_queues[this.course]['pausedRequests'] = this.pausedRequests;
+  if (!the_queues[this.requestArray]) the_queues[this.requestArray] = [];
+  the_queues[this.requestArray].push(this.UserId);
+  if (!the_queues[this.pausedRequests]) the_queues[this.pausedRequests] = [];
 };
 
+
+HelpRequest.prototype.togglePauseResume = function(){
+  // if the request is not in the pause array add it then exit the function
+  var course_pause_array = the_queues[this.pausedRequests];
+  if (! course_pause_array.includes(this.UserId)){
+    console.log('push to pause');
+    the_queues[this.pausedRequests].push(this.UserId);
+    return;
+  }
+  //if the request is in the pause array, remove it
+  the_queues[this.pausedRequests] = remove_from_array(this.UserId, course_pause_array);
+};
+
+function remove_from_array(arrayItem, check_array){
+  var temp_array = [];
+  console.log('check_array', check_array);
+  if(!check_array) return temp_array;
+  for (var i = 0; i < check_array.length; i++){
+    if(check_array[i] != arrayItem) temp_array.push(check_array[i]);
+  }
+  console.log('temp_array',temp_array);
+  return temp_array;
+}
 
 function build_users_object(){
   var the_user;

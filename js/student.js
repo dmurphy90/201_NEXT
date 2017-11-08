@@ -13,8 +13,12 @@ var flip_front = document.getElementById('enter_queue');
 var flip_back = document.getElementById('pause_resume');
 var remove_request_btn = document.getElementById('remove_request_btn');
 
+var queueDisplay = document.getElementById('queue');
+
 function createList(course) {
   var queueDisplay = document.getElementById('queue');
+  //reorder the array if any requests are paused
+  the_queues.pause_handler(course);
   for (var a = 0; a < the_queues[course + '_arr'].length; a++) {
     var newLi = document.createElement('li');
     var userid = the_queues[course + '_arr'][a];
@@ -31,89 +35,83 @@ function student_request_event_listeners() {
     userCourse = 'seattle-201d27';
     activeUser = 'MillerK';
   }
-  pause_resume_btn.addEventListener('click', update_request);
-  pickTA.addEventListener('change', this.value);
-  problemType.addEventListener('change', this.value);
   flip_front.addEventListener('click', enterQueue);
   flip_back.addEventListener('click', pauseResume);
   remove_request_btn.addEventListener('click', removeRequest);
 }
 
-function update_request(e){
-  e.preventDefault();
-  var temp_request_array = [];
-
-  if (!the_queues[userCourse + request_array_suffix]) the_queues[userCourse + request_array_suffix] = [];
-  var course_request_array = the_queues[userCourse + request_array_suffix];
-  //if the help request is not in the array add it to the request array and object
-  //for that course then exit the function
-  if (! course_request_array.includes(activeUser)){
-    course_request_array.push(activeUser);
-    //the_queues[userCourse][activeUser] = new HelpRequest();
-    console.log('Push to request' );
-    return;
-  }
-  // if the request is not in the pause array add it then exit the function
-  if (!the_queues[userCourse + pause_array_suffix]) the_queues[userCourse + pause_array_suffix] = [];
-  var course_pause_array = the_queues[userCourse + pause_array_suffix];
-  if (! course_pause_array.includes(activeUser)){
-    console.log('push to pause');
-    the_queues[userCourse + pause_array_suffix].push(activeUser);
-    return;
-  }
-  //if the request is in the pause array, remove it
-  if (course_pause_array.includes(activeUser)){
-    console.log('remove from pause');
-    var temp_pause_aray = [];
-    for (var i = 0; i < course_pause_array.length; i++){
-      if(course_pause_array[i] != activeUser) temp_pause_aray.push(course_pause_array[i]);
-    }
-    the_queues[userCourse + pause_array_suffix] = temp_pause_aray;
-  }
-
-}
-
-
 function enterQueue(e) {
   console.log('Pick TA: ', pickTA.value);
   console.log('Problem Type: ', problemType.value);
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(180deg)';
-
-  //make sure there is an array for the course
-  if (!the_queues[userCourse + request_array_suffix]) the_queues[userCourse + request_array_suffix] = [];
-  var course_request_array = the_queues[userCourse + request_array_suffix];
-  //if the help request is not in the array add it to the request array and object
-  //for that course then exit the function
-  if (! course_request_array.includes(activeUser)){
-    course_request_array.push(activeUser);
-    //the_queues[userCourse][activeUser] = new HelpRequest();
-    console.log('Push to request' );
-  }
+  var student_requested_ta = pickTA.value;
+  var student_requestIssue = problemType.value;
+  var student_request = new HelpRequest(activeUser, student_requestIssue, student_requested_ta, userCourse);
+  var queueDisplay = document.getElementById('queue');
+  queueDisplay.innerHTML = '';
+  createList(userCourse);
 };
 
 function removeRequest(e) {
+  e.preventDefault();
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(0deg)';
+  the_queues.deleteRequest(userCourse, activeUser);
+  queueDisplay.innerHTML = '';
+  createList(userCourse);
 }
 
 function pauseResume(e) {
-  // if the request is not in the pause array add it then exit the function
-  if (!the_queues[userCourse + pause_array_suffix]) the_queues[userCourse + pause_array_suffix] = [];
-  var course_pause_array = the_queues[userCourse + pause_array_suffix];
-  if (! course_pause_array.includes(activeUser)){
-    console.log('push to pause');
-    the_queues[userCourse + pause_array_suffix].push(activeUser);
-    return;
-  }
-  //if the request is in the pause array, remove it
-  if (course_pause_array.includes(activeUser)){
-    console.log('remove from pause');
-    var temp_pause_aray = [];
-    for (var i = 0; i < course_pause_array.length; i++){
-      if(course_pause_array[i] != activeUser) temp_pause_aray.push(course_pause_array[i]);
-    }
-    the_queues[userCourse + pause_array_suffix] = temp_pause_aray;
-  }
+  e.preventDefault();
+  the_queues.togglePauseResume(userCourse, activeUser);
 }
 
+function pause_handler(aCourse){
+  //if there are no requests on pause, exit
+  if (! the_queues[aCourse.pausedRequests]) return;
+  var temp_course_array = [];
+  var pause_request_array = the_queues[aCourse.pausedRequests];
+  var course_request_array = the_queues[aCourse.requestArray];
+  for (var i = 0; i < course_request_array.length; i++){
+    if (pause_request_array.includes(course_request_array[i])){
+      temp_course_array.push(course_request_array[i + 1]);
+      temp_course_array.push(course_request_array[i]);
+      i++;
+    } else {
+      temp_course_array.push(course_request_array[i]);
+    }
+  }
+  the_queues[aCourse.requestArray] = temp_course_array;
+}
+
+/*
+function pause_handler(aCourse){
+  //if there are no requests on pause, exit
+  if (! the_queues[aCourse + pause_array_suffix]) return;
+  var temp_course_array = [];
+  var pause_request_array = the_queues[aCourse + pause_array_suffix];
+  var course_request_array = the_queues[userCourse + request_array_suffix];
+  for (var i = 0; i < course_request_array.length; i++){
+    if (pause_request_array.includes(course_request_array[i])){
+      temp_course_array.push(course_request_array[i + 1]);
+      temp_course_array.push(course_request_array[i]);
+      i++;
+    } else {
+      temp_course_array.push(course_request_array[i]);
+    }
+  }
+  return temp_course_array;
+}
+*/
+
+function remove_from_array(arrayItem, check_array){
+  var temp_array = [];
+  console.log('check_array', check_array);
+  if(!check_array) return temp_array;
+  for (var i = 0; i < check_array.length; i++){
+    if(check_array[i] != arrayItem) temp_array.push(check_array[i]);
+  }
+  console.log('temp_array',temp_array);
+  return temp_array;
+}
 
 student_request_event_listeners();
