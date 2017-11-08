@@ -29,7 +29,9 @@ var usersData = [
   ['Tama', 'Rushin', 'student', 'seattle-201d27']
 ];
 
-var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
+var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
+
+// var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
 
 var coursesData = [{courseName: 'seattle-201d27', courseInstructor: 'Brian Nations'}, {courseName: 'seattle-301d27', courseInstructor: 'Brian Nations'}];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
@@ -85,7 +87,7 @@ Queues.prototype.deleteRequest = function(courseId, requestId){
   this[theRequest.requestArray] = remove_from_array(requestId, course_request_array);
   //remove the requestId from the pause array if it exists
   if (this[theRequest.pausedRequests].includes(requestId)){
-    this[theRequest.pausedRequests] = remove_from_array(requestId, course_request_array);
+    this[theRequest.pausedRequests] = remove_from_array(requestId, this[theRequest.pausedRequests]);
   }
   //delete request object
   delete this[courseId][requestId];
@@ -106,6 +108,7 @@ Queues.prototype.togglePauseResume = function(courseId, requestId){
 };
 
 Queues.prototype.pause_handler = function(courseId) {
+  console.log('pause_handler');
   var course_requests = this[courseId];
   var pausedRequests = this[course_requests.pausedRequests];
   var requestArray = this[course_requests.requestArray];
