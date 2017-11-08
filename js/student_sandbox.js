@@ -4,7 +4,7 @@ var courses = {};
 var aCourse = {
   courseNum: 'seattle-201d27',
   instructor: 'Brian Nations',
-  availableTA:['StuartM', 'BhartiB']
+  availableTA:['StuartM', 'BhartiB', 'EvansJ']
 };
 
 courses['seattle-201d27'] = aCourse;
@@ -23,8 +23,6 @@ var remove_request_btn = document.getElementById('remove_request_btn');
 remove_request_btn.addEventListener('click', removeRequest);
 
 function enterQueue(e) {
-  console.log('Pick TA: ', pickTA.value);
-  console.log('Problem Type: ', problemType.value);
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(180deg)';
   remove_request_btn.classList.toggle('active');
 };
@@ -34,14 +32,12 @@ function removeRequest(e) {
   remove_request_btn.classList.toggle('active');
 }
 
-// function pauseResume(e) {
-// }
-
 function fillPage() {
-  users[sessionStorage.username].fullName;
+  var currentUser = users[sessionStorage.username].fullName;
   var currentCourse = users[sessionStorage.username].currentCourse;
   var availableTAs = courses[currentCourse].availableTA;
-  console.log('TA List: ', availableTAs);
+  var studentHeader = document.getElementById('student_header');
+  studentHeader.innerHTML = currentUser;
   var addTA = document.getElementById('pick_ta');
   for (var i = 0; i < availableTAs.length; i++) {
     var optionTA = document.createElement('option');

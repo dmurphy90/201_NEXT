@@ -11,8 +11,8 @@ var usersData = [
   ['Dean', 'Murphy', 'student', 'seattle-201d27'],
   ['Dylan', 'Wilkinson', 'student', 'seattle-201d27'],
   ['Greg', 'Nordeng', 'student', 'seattle-201d27'],
-  ['Heath', 'Smith', 'student ta', 'seattle-201d27'],
-  ['Hector', 'Norza', 'student ta', 'seattle-201d27'],
+  ['Heath', 'Smith', 'student', 'seattle-201d27'],
+  ['Hector', 'Norza', 'student', 'seattle-201d27'],
   ['Jamie', 'Williams', 'student', 'seattle-201d27'],
   ['Jeremy', 'Pearson', 'student', 'seattle-201d27'],
   ['Jordan', 'VanNess', 'student', 'seattle-201d27'],
@@ -23,13 +23,13 @@ var usersData = [
   ['Matt', 'Harding', 'student', 'seattle-201d27'],
   ['Melanie', 'Downing', 'student', 'seattle-201d27'],
   ['Michael', 'Stuart', 'ta', 'seattle-201d27'],
-  ['Mitchell', 'Massie', 'student ta', 'seattle-201d27'],
-  ['Richard', 'Montgomery', 'student ta', 'seattle-201d27'],
-  ['Roger', 'Davenport', 'student ta', 'seattle-201d27'],
-  ['Tama', 'Rushin', 'student ta', 'seattle-201d27']
+  ['Mitchell', 'Massie', 'student', 'seattle-201d27'],
+  ['Richard', 'Montgomery', 'student', 'seattle-201d27'],
+  ['Roger', 'Davenport', 'student', 'seattle-201d27'],
+  ['Tama', 'Rushin', 'student', 'seattle-201d27']
 ];
 
-var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['Van NessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
+var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
 
 var coursesData = [{courseName: 'seattle-201d27', courseInstructor: 'Brian Nations'}, {courseName: 'seattle-301d27', courseInstructor: 'Brian Nations'}];
 var problemType = ['Code Error', 'Problem Domain', 'Git', 'Styling', 'Other'];
