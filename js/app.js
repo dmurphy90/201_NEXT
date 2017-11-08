@@ -1,5 +1,5 @@
 'use strict';
-
+var currentPotd = document.getElementById('current_potd');
 var logout = document.getElementById('log_out_btn')
 var dateToday = new Date();
 //object for all users
@@ -73,13 +73,13 @@ User.prototype.setPermissions = function() {
   this.userPerms = this.userPermissionsOptions[this.userType];
 };
 
-function loadPotd(){
-  if (localStorage.potd) {
-    console.log('this is working');
-    currentPotd.innerHTML = '';
-    currentPotd.innerHTML = localStorage.potd;
-  }
-};
+
+if (localStorage.potd) {
+  console.log('this is working');
+  currentPotd.innerHTML = '';
+  currentPotd.innerHTML = localStorage.potd;
+}
+
 
 function Course(courseNum, instructor) {
   this.courseNum = courseNum;
