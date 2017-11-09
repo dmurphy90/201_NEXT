@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NEXT! TA Help System - Admin</title>
+    <title>Next! TA Help System - Admin</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
@@ -23,9 +23,21 @@
           </div>
           <h3 id="student_name">Instructor of the Day</h3>
         <div>
-          <button id="next">NEXT</button>
-          <button id="bump">BUMP</button>
+          <button id="next">Next</button>
+          <button id="bump">Bump</button>
         <div>
+        </section>
+        <section class="problem_otd">
+          <button id="problem_otd_button">Post a Common Issue</button>
+            <div id="potd_overlay"></div>
+            <div id="potd_popup">
+              <form id="potd_form">
+                <textarea cols="47" rows="9" name="commonissues">
+                </textarea>
+                <button id="submit_potd" type="submit">Post</button>
+                <button id="cancel_potd">Cancel</button>
+              </form>
+            </div>
         </section>
       </section>
       <section id="active_course">
@@ -42,19 +54,6 @@
         <section class="admin_ta_q">
           <ol id="queue" class="admin_ta">
           </ol>
-        </section>
-        <section class="problem_otd">
-          <button id="problem_otd_button">Post A Problem Of The Day</button>
-            <div id="potd_overlay"></div>
-            <div id="potd_popup">
-              <form id="potd_form">
-                <fieldset>
-                  <input type="text" name="potd_text" placeholder="Problem of the Day">
-                </fieldset>
-                <button id="submit_potd" type="submit">Post</button>
-                <button id="cancel_potd">Cancel</button>
-              </form>
-            </div>
         </section>
       </section>
       <div class="clearFix"></div>

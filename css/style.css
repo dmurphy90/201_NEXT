@@ -4,15 +4,16 @@ header {
 	height:120px;
 	top: 0;
 	background: #000;
-  color: red;
+  color: #fff;
 	outline: 1px dashed;
 }
 
 header h1 {
-  font-family: helvetica;
-	font-size: 60px;
-	margin: 30px;
-	text-align: center;
+	font-size: 50px;
+  margin: 30px;
+  text-align: center;
+  font-family: 'Monsterrat', sans-serif;
+  font-weight: bold;
 }
 
 #header_logo {
@@ -28,14 +29,21 @@ header h1 {
 	padding: 12px 8px;
 	font-size: 18px;
 	margin: 30px;
+	background-color: #cc3524;
+  color: #fff;
+  font-family: 'Monsterrat', sans-serif;
+  font-weight: bold;
+  border: none;
+  border-radius: 30px;
 }
 
 main {
-	background-color: grey;
+	background-color: #fff;
 	width: 960px;
 	height: 100%;
 	margin: 140px auto;
 	outline: 1px dashed;
+	font-family: 'Montserrat', sans-serif;
 }
 
 h1#login_header {
@@ -153,6 +161,11 @@ h1#login_header {
 	text-align: right;
 }
 
+button {
+	outline: none;
+	cursor: pointer;
+}
+
 .clearFix {
 	clear: both;
 }
@@ -162,7 +175,7 @@ footer {
 	width:100%;
  	position:fixed;
  	bottom: 0;
-	background: #fff;
+	background-color: #000;
 	outline: 1px dashed;
 }
 

@@ -4,6 +4,7 @@ var logout = document.getElementById('log_out_btn')
 var dateToday = new Date();
 //object for all users
 var users = {};
+var courses = {};
 var usersData = [
   ['Bhavya', 'Bharti', 'ta', 'seattle-201d27'],
   ['Brian', 'Nations', 'instructor', 'seattle-201d27'],
@@ -75,11 +76,22 @@ User.prototype.setPermissions = function() {
 };
 
 User.prototype.setPlaceHolderNames = function() {
+<<<<<<< HEAD
   if (this.userId === this.placeHolderUserId) {
     this.firstName = this.placeHolderMessaage;
     this.fullName = this.placeHolderMessaage;
   }
 };
+=======
+  if (this.userId === this.placeHolderId) {
+    this.firstName = this.placeHolderMessaage;
+    this.fullName = this.placeHolderMessaage;
+  }
+  //this.userPerms = this.userPermissionsOptions[this.userType];
+  this.fullName = this.firstName + ' ' + this.lastName;
+};
+
+>>>>>>> 620864f1854481b57e66de4d8fffdf07a0bc62cd
 function Course(courseNum, instructor) {
   this.courseNum = courseNum;
   this.instructor = instructor;
@@ -168,8 +180,12 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.requestIssue = requestIssue;
   this.requestedTA = requested_ta;
   this.requestTimeStamp = dateToday.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit'});
+<<<<<<< HEAD
   this.newli = '<span class="' + UserId + '">  ' + users[UserId].fullName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + users[this.requestedTA].fullName + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
   // this.createRequestTimeStamp();
+=======
+  this.newli = '<span class="' + UserId + '">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
+>>>>>>> 620864f1854481b57e66de4d8fffdf07a0bc62cd
   this.add_to_queue();
 }
 
@@ -186,6 +202,7 @@ HelpRequest.prototype.add_to_queue = function(){
   if (!the_queues[this.beingHelped]) the_queues[this.beingHelped] = [];
 };
 
+/*
 HelpRequest.prototype.togglePauseResume = function(){
   // if the request is not in the pause array add it then exit the function
   var course_pause_array = the_queues[this.pausedRequests];
@@ -197,6 +214,7 @@ HelpRequest.prototype.togglePauseResume = function(){
   //if the request is in the pause array, remove it
   the_queues[this.pausedRequests] = remove_from_array(this.UserId, course_pause_array);
 };
+*/
 
 function remove_from_array(arrayItem, check_array){
   var temp_array = [];
@@ -220,6 +238,17 @@ function create_user_from_data(firstName, lastName, userType, course){
 }
 
 build_users_object();
+// biulds courses object
+function build_course_object(){
+  var mynewcourse;
+  for (var i = 0; i < coursesData.length; i++){
+    mynewcourse = new Course(coursesData[i].courseName, coursesData[i].courseInstructor);
+    courses[coursesData[i].courseName] = mynewcourse;
+  }
+}
+//this function creates a new User
+
+build_course_object();
 
 var the_queues = new Queues();
 // this is just for testing, the HelpRequest needs to be called once the student clicks add to //queue button
@@ -240,10 +269,8 @@ if (!localStorage.the_queues) {
 
 if (!localStorage.users){
   localStorage.users = JSON.stringify(users);
-}
+};
 
-
-//localStorage.the_queues = JSON.stringify(the_queues);
-// logout.addEventListener('click', signout);
-// var myCourse = 'seattled27';
-// the_queues[myCourse].kevin_miller_d27
+if (!localStorage.courses) {
+  localStorage.courses = JSON.stringify(courses);
+};
