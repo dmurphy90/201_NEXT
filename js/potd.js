@@ -18,6 +18,7 @@ function openPopup() {
 function closePopup() {
   potdPopup.style.display = 'none';
   console.log('goodbye');
+  potdForm.reset();
 }
 
 function postPotd(event) {
