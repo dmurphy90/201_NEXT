@@ -73,7 +73,6 @@ function displaySelectedTA(e) {
   student_requested_ta = pickTA.value;
   TAPic.setAttribute('src', users[student_requested_ta].profileImagePath);
   selectedTA.appendChild(TAPic);
-  console.log('displayTA firing: ', 'Im here')
 }
 
 function enterQueue(e) {
