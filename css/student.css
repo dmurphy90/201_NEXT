@@ -53,6 +53,7 @@ select {
   height: 200px;
   overflow: hidden;
   border: 1px inset black;
+  border-radius: 10px;
   text-align: center;
   font-size: 16px;
   line-height: 200px;
