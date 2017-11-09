@@ -55,9 +55,12 @@ function User(firstName, lastName, userType, course){
   this.profileImageFolderPath = 'images/';
   this.profileImagePath;
   this.imageFormat = '.jpg';
+  this.placeHolderUserId = 'LegoM';
+  this.placeHolderMessaage = 'Next Available';
   this.createUserId();
   this.setProfileImagePath();
   this.setPermissions();
+  this.setPlaceHolderNames();
 }
 
 User.prototype.createUserId = function() {
@@ -70,6 +73,15 @@ User.prototype.setProfileImagePath = function(){
 
 User.prototype.setPermissions = function() {
   this.userPerms = this.userPermissionsOptions[this.userType];
+};
+
+User.prototype.setPlaceHolderNames = function() {
+  if (this.userId === this.placeHolderId) {
+    this.firstName = this.placeHolderMessaage;
+    this.fullName = this.placeHolderMessaage;
+  }
+  //this.userPerms = this.userPermissionsOptions[this.userType];
+  this.fullName = this.firstName + ' ' + this.lastName;
 };
 
 function Course(courseNum, instructor) {
@@ -161,7 +173,6 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.requestedTA = requested_ta;
   this.requestTimeStamp = dateToday.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit'});
   this.newli = '<span class="' + UserId + '">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
-  // this.createRequestTimeStamp();
   this.add_to_queue();
 }
 
@@ -178,6 +189,7 @@ HelpRequest.prototype.add_to_queue = function(){
   if (!the_queues[this.beingHelped]) the_queues[this.beingHelped] = [];
 };
 
+/*
 HelpRequest.prototype.togglePauseResume = function(){
   // if the request is not in the pause array add it then exit the function
   var course_pause_array = the_queues[this.pausedRequests];
@@ -189,6 +201,7 @@ HelpRequest.prototype.togglePauseResume = function(){
   //if the request is in the pause array, remove it
   the_queues[this.pausedRequests] = remove_from_array(this.UserId, course_pause_array);
 };
+*/
 
 function remove_from_array(arrayItem, check_array){
   var temp_array = [];
