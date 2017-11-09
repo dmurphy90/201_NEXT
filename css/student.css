@@ -3,7 +3,7 @@
 }
 
 .student_q {
-  background-color: beige;
+  background-color: white;
 	margin: 20px 10px 20px 20px;
 	width: 500px;
   position: absolute;
@@ -11,7 +11,7 @@
 }
 
 .student_options {
-  background-color: beige;
+  background-color: black;
 	margin: 20px 20px 20px 10px;
 	width: 400px;
   position: absolute;
