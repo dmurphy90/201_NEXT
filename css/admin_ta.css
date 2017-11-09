@@ -67,6 +67,10 @@
 	float: left;
 }
 
+#active_course p {
+	margin-left: 11px;
+}
+
 #active_course .drop_items {
 	opacity: 0;
 	height: 0;
@@ -122,8 +126,8 @@ button#problem_otd_button {
   position: fixed;
   left: 50%;
   top: 50%;
-  width: 304px;
-  height: 150px;
+  width: 396px;
+  height: 200px;
   margin-top: -75px;
   margin-left: -150px;
   background: #fff;
@@ -132,17 +136,38 @@ button#problem_otd_button {
 }
 
 form#potd_form input{
-	width: 294px;
-  height: 120px;
+	/*width: 294px;
+  height: 120px;*/
+	padding-top: 0;
+	padding-left: 0;
+	line-height: 1em;
+}
+
+form#potd_form textarea{
+	background-color: #e0ddd1;
+  border: none;
+  border-radius: 0;
+	font-family: 'Monsterrat', sans-serif;
+  font-size: 16px;
 }
 
 button#submit_potd{
 	margin-top: 3px;
-	margin-left: 90px;
+	margin-left: 125px;
 	background-color: #4fbf4f;
 	color: #fff;
 	border: none;
 	border-radius: 30px;
 	width: 70px;
 	font-size: 12px;
+}
+
+button#cancel_potd{
+	border: none;
+  border-radius: 30px;
+  width: 70px;
+  font-size: 12px;
+  font-family: 'Monsterrat', sans-serif;
+  background-color: #cc3524;
+  color: #fff;
 }
