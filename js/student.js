@@ -133,3 +133,9 @@ function setPauseClass(course) {
 
 fillPage();
 student_request_event_listeners();
+
+function signout(event) {
+  sessionStorage.clear();
+  window.location = './index.html';
+}
+logout.addEventListener('click', signout);
