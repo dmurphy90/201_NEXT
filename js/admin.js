@@ -37,14 +37,19 @@ function set_active_course(e) {
   customSelectAction(this, e);
   //get the value of the active course after it is changed
   var updated_active_course = active_course_ul.dataset.value;
-<<<<<<< HEAD
+
   var oldUserId = document.getElementById('user_image_wrap').getAttribute('data-id');
+
 
   // removes user from bieng help array for their couse.
   removeFromBeingHelpedArray(current_active_course, oldUserId);
-=======
 
->>>>>>> a9018c58a1da208c4d1ea8ea09e286d1e1fb65cd
+
+  // removes user from bieng help array for their couse.
+  removeFromBeingHelpedArray(current_active_course, oldUserId);
+
+
+
   //get the active TA
   //var active_ta = test_TA;
   var active_ta = sessionStorage.username;
@@ -143,17 +148,17 @@ function createList(course) {
       testli.addEventListener('click', studentCardEvent);
 
     }
-<<<<<<< HEAD
+
     if (the_queues[course + '_arr'][0]) {
       studentCard(the_queues[course + '_arr'][0]);
     } else {
       console.log('else legoman');
       studentCard('LegoM');
     }
-=======
+
     setPauseClass(course);
     studentCard(the_queues[course + '_arr'][0]);
->>>>>>> a9018c58a1da208c4d1ea8ea09e286d1e1fb65cd
+
 
   };
 }
@@ -166,19 +171,20 @@ function setButtonListener() {
 }
 
 
+
 function nextRemove(e) {
   var userToRemove = document.getElementById('user_image_wrap').getAttribute('data-id');
   console.log('next remove', userToRemove);
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
   console.log('user course', userCourse);
-<<<<<<< HEAD
-  if (userToRemove != '') {
+
+  if (userToRemove) {
     delete the_queues[userCourse][userToRemove];
   }
   removeFromBeingHelpedArray(userCourse, userToRemove);
-=======
+
   delete the_queues[userCourse][userToRemove];
->>>>>>> a9018c58a1da208c4d1ea8ea09e286d1e1fb65cd
+
   var index = the_queues[userCourse + '_arr'].indexOf(userToRemove);
   console.log('index', index);
   if(index != -1) {
@@ -190,7 +196,47 @@ function nextRemove(e) {
 function bump(e) {
   var userToBump = document.getElementById('user_image_wrap').getAttribute('data-id');
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
-<<<<<<< HEAD
+
+  if (userToBump != '') {
+    var index = the_queues[userCourse + '_arr'].indexOf(userToBump);
+    if(index != -1) {
+      the_queues[userCourse + '_arr'].splice(index, 1);
+    };
+
+    the_queues[userCourse + '_arr'].push(userToBump);
+    removeFromBeingHelpedArray(userCourse, userToBump);
+    createList(userCourse);
+  }
+}
+// adds the user to array of being helped for the course they are in
+function beingHelped(userId) {
+  var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
+
+
+
+
+function nextRemove(e) {
+  var userToRemove = document.getElementById('user_image_wrap').getAttribute('data-id');
+  console.log('next remove', userToRemove);
+  var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
+  console.log('user course', userCourse);
+
+  if (userToRemove != '') {
+    delete the_queues[userCourse][userToRemove];
+  }
+  removeFromBeingHelpedArray(userCourse, userToRemove);
+
+  var index = the_queues[userCourse + '_arr'].indexOf(userToRemove);
+  console.log('index', index);
+  if(index != -1) {
+    the_queues[userCourse + '_arr'].splice(index, 1);
+  }
+  createList(userCourse);
+}
+
+function bump(e) {
+  var userToBump = document.getElementById('user_image_wrap').getAttribute('data-id');
+  var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
   if (userToBump != '') {
     var index = the_queues[userCourse + '_arr'].indexOf(userToBump);
     if(index != -1) {
@@ -206,6 +252,7 @@ function bump(e) {
 function beingHelped(userId) {
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
 
+
   if (the_queues[userCourse + '_beingHelped'].includes(userId)) {
     return;
   } else {
@@ -220,7 +267,18 @@ function removeFromBeingHelpedArray(userCourse, userId) {
     if(helpedIndex != -1) {
       the_queues[userCourse + '_beingHelped'].splice(helpedIndex, 1);
     }
-=======
+
+
+  }
+}
+function setPauseClass(course) {
+  var pauseIds = the_queues.getPausedArray(course);
+  for (var p = 0; p < pauseIds.length; p++){
+    document.getElementById(pauseIds[p]).classList.add('pause');
+
+  }
+}
+
   var index = the_queues[userCourse + '_arr'].indexOf(userToBump);
   if(index != -1) {
     the_queues[userCourse + '_arr'].splice(index, 1);
@@ -233,9 +291,7 @@ function setPauseClass(course) {
   var pauseIds = the_queues.getPausedArray(course);
   for (var p = 0; p < pauseIds.length; p++){
     document.getElementById(pauseIds[p]).classList.add('pause');
->>>>>>> a9018c58a1da208c4d1ea8ea09e286d1e1fb65cd
-  }
-}
+
 
 
 setButtonListener();
