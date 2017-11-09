@@ -1,13 +1,13 @@
 'use strict';
 
-var courses = {};
-var aCourse = {
-  courseNum: 'seattle-201d27',
-  instructor: 'Brian Nations',
-  availableTA:['StuartM', 'BhartiB', 'EvansJ']
-};
-
-courses['seattle-201d27'] = aCourse;
+// var courses = {};
+// var aCourse = {
+//   courseNum: 'seattle-201d27',
+//   instructor: 'Brian Nations',
+//   availableTA:['StuartM', 'BhartiB', 'EvansJ']
+// };
+//
+// courses['seattle-201d27'] = aCourse;
 
 var userCourse;
 var activeUser;
@@ -43,16 +43,16 @@ createList('seattle-201d27');
 
 function fillPage() {
   var currentUser = users[sessionStorage.username].fullName;
-  var currentCourse = users[sessionStorage.username].currentCourse;
-  var availableTAs = courses[currentCourse].availableTA;
+  // var currentCourse = users[sessionStorage.username].currentCourse;
+  // var availableTAs = courses[currentCourse].availableTA;
   var studentHeader = document.getElementById('student_header');
   studentHeader.innerHTML = currentUser;
-  var addTA = document.getElementById('pick_ta');
-  for (var i = 0; i < availableTAs.length; i++) {
-    var optionTA = document.createElement('option');
-    optionTA.innerHTML = availableTAs[i];
-    addTA.appendChild(optionTA);
-  }
+  // var addTA = document.getElementById('pick_ta');
+  // for (var i = 0; i < availableTAs.length; i++) {
+  //   var optionTA = document.createElement('option');
+  //   optionTA.innerHTML = availableTAs[i];
+  //   addTA.appendChild(optionTA);
+  // }
 }
 
 function student_request_event_listeners() {
