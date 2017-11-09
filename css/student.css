@@ -3,16 +3,17 @@
 }
 
 .student_q {
-  background-color: white;
-	margin: 20px 10px 20px 20px;
-	width: 500px;
+<<<<<<< HEAD
+  background-color: #FFF;
+	margin: 20px 10px 20px 0;
+	width: 530px;
   position: absolute;
   left: 0;
 }
 
 .student_options {
   background-color: black;
-	margin: 20px 20px 20px 10px;
+	margin: 20px 0 20px 10px;
 	width: 400px;
   position: absolute;
   right: 0;
