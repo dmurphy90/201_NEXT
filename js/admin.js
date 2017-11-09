@@ -1,5 +1,8 @@
 'use strict';
 
+var adminHeader = document.getElementById('admin_header');
+var currentUser;
+
 //var test_TA = 'StuartM';
 var currentCourseToDislay = 'Unavailable';
 var refresh_intervalId;
@@ -29,6 +32,14 @@ function build_active_course_lineItems() {
   }
 }
 
+function adminHeaderName() {
+  if( sessionStorage.username){
+    currentUser = users[sessionStorage.username].fullName;
+    adminHeader.innerHTML = currentUser;
+  }
+}
+
+adminHeaderName();
 
 function set_active_course(e) {
   //get the value of the active course before it is changed

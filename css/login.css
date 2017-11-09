@@ -5,6 +5,7 @@ main {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 300px;
+  background-color: #fff;
 }
 
 header {
@@ -21,7 +22,7 @@ header {
 
 img#login_header_logo {
 	height: 100px;
-  margin-left: 760px;
+  margin-left: 750px;
 }
 
 body {
@@ -55,6 +56,9 @@ form#login_form input{
   font-family: 'Monsterrat', sans-serif;
   margin-bottom: 15px;
   margin-top: 40px;
+  background-color: #e0ddd1;
+  border: none;
+  border-radius: 0;
 }
 
 button#login_btn {
@@ -117,6 +121,9 @@ form#signup_form input {
   height: 35px;
   margin-left: 90px;
   margin-bottom: 10px;
+  background-color: #e0ddd1;
+  border: none;
+  border-radius: 0;
 }
 
 fieldset#userType {

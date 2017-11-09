@@ -6,7 +6,6 @@
   background-color: beige;
 	margin: 20px 10px 20px 20px;
 	width: 500px;
-  /*display: inline-block;*/
   position: absolute;
   left: 0;
 }
@@ -15,21 +14,18 @@
   background-color: beige;
 	margin: 20px 20px 20px 10px;
 	width: 400px;
-  /*display: inline-block;*/
   position: absolute;
   right: 0;
   height: 300px;
 }
 
 .available_ta_box {
-  /*border: 1px dotted red;*/
   position: absolute;
   top: 10px;
   left: 10px;
 }
 
 .problem_type_box {
-  /*border: 1px dotted red;*/
   position: absolute;
   top: 80px;
   left: 10px;

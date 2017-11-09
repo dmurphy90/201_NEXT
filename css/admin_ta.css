@@ -13,6 +13,8 @@
 	width:460px;
 	height: 300px;
 	outline: 1px dashed;
+	background: #888;
+	border-radius: 10px;
 }
 
 #student_name {
@@ -32,6 +34,8 @@
 	width: 175px;
 	height: 200px;
 	overflow: hidden;
+	border: 2px solid black;
+  border-radius: 10px;
 }
 
 #bump {
@@ -40,6 +44,10 @@
 	font-weight: bold;
 	float: right;
 	margin-right:20px;
+	background-color: #cc3524;
+	border: none;
+	border-radius: 30px;
+	color: #fff;
 }
 
 #next{
@@ -48,10 +56,19 @@
 	font-weight: bold;
 	float: right;
 	margin-right:20px;
+	font-family: 'Monsterrat', sans-serif;
+  background-color: #4fbf4f;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
 }
 
 #active_course {
 	float: left;
+}
+
+#active_course p {
+	margin-left: 11px;
 }
 
 #active_course .drop_items {
@@ -80,6 +97,18 @@
 	padding: 10px 0;
 }
 
+button#problem_otd_button {
+	width: 200px;
+	height: 40px;
+	border: none;
+	border-radius: 30px;
+	background-color: #000;
+	color: #fff;
+	font-size: 13px;
+  font-family: 'Monsterrat', sans-serif;
+  font-weight: bold;
+}
+
 #potd_overlay {
   display: none;
   position: fixed;
@@ -97,11 +126,48 @@
   position: fixed;
   left: 50%;
   top: 50%;
-  width: 300px;
-  height: 150px;
+  width: 396px;
+  height: 200px;
   margin-top: -75px;
   margin-left: -150px;
   background: #fff;
   border: 2px solid #000;
   z-index: 99999;
+}
+
+form#potd_form input{
+	/*width: 294px;
+  height: 120px;*/
+	padding-top: 0;
+	padding-left: 0;
+	line-height: 1em;
+}
+
+form#potd_form textarea{
+	background-color: #e0ddd1;
+  border: none;
+  border-radius: 0;
+	font-family: 'Monsterrat', sans-serif;
+  font-size: 16px;
+}
+
+button#submit_potd{
+	margin-top: 3px;
+	margin-left: 125px;
+	background-color: #4fbf4f;
+	color: #fff;
+	border: none;
+	border-radius: 30px;
+	width: 70px;
+	font-size: 12px;
+}
+
+button#cancel_potd{
+	border: none;
+  border-radius: 30px;
+  width: 70px;
+  font-size: 12px;
+  font-family: 'Monsterrat', sans-serif;
+  background-color: #cc3524;
+  color: #fff;
 }
