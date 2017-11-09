@@ -17,6 +17,7 @@
   position: absolute;
   right: 0;
   height: 300px;
+  margin-bottom: 100px;
 }
 
 .available_ta_box {
@@ -34,6 +35,7 @@
 .student_options h3 {
 	margin: 10px;
 	font-size: 16px;
+  color: #fff;
   /*font-family: 'Monsterrat', sans-serif;*/
 }
 
