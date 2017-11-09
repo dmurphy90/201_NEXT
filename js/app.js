@@ -243,4 +243,8 @@ if (!localStorage.the_queues) {
 
 if (!localStorage.users){
   localStorage.users = JSON.stringify(users);
-}
+};
+
+if (!localStorage.courses) {
+  localStorage.courses = JSON.stringify(courses);
+};

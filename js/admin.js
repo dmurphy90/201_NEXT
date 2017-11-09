@@ -7,12 +7,12 @@ var currentUser;
 var currentCourseToDislay = 'Unavailable';
 var refresh_intervalId;
 //object to hold all course objects
-var courses = {};
+var courses = JSON.parse(localStorage.courses);
 
 //ref to active_course drop down
 var active_course_ul = document.getElementById('active_course_ul');
 
-build_test_courses_data();
+//build_test_courses_data();
 initActiveCourse();
 
 function initActiveCourse() {
@@ -92,14 +92,14 @@ function customSelectAction(el, e) {
 }
 
 //build using coursesData from app.js
-function build_test_courses_data() {
-  var the_course;
-  for (var i = 0; i < coursesData.length; i++){
-    the_course = new Course(coursesData[i].courseName, coursesData[i].courseInstructor);
-    courses[the_course.courseNum] = the_course;
-  }
-  console.log('courses: ', courses);
-}
+// function build_test_courses_data() {
+//   var the_course;
+//   for (var i = 0; i < coursesData.length; i++){
+//     the_course = new Course(coursesData[i].courseName, coursesData[i].courseInstructor);
+//     courses[the_course.courseNum] = the_course;
+//   }
+//   console.log('courses: ', courses);
+// }
 
 function studentCardEvent(e) {
   var userid;
