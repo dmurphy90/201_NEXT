@@ -4,13 +4,19 @@
 }
 
 .ta_view_left {
-	width:540px;
+	/*width:540px;*/
 	height: 360px;
 	float: left;
 }
 
+.admin_ta_q {
+	background-color: #FFF;
+	margin: 20px 10px 20px 0;
+	width: 570px;
+}
+
 .student_info_card {
-	width:460px;
+	width:430px;
 	height: 300px;
 	outline: 1px dashed;
 	background: #888;
@@ -77,6 +83,7 @@
 
 #active_course {
 	float: left;
+	margin-left: 30px;
 }
 
 #active_course p {

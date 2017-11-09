@@ -39,7 +39,7 @@ header h1 {
 
 main {
 	background-color: #fff;
-	width: 960px;
+	width: 1200px;
 	height: 100%;
 	margin: 140px auto;
 	outline: 1px dashed;
@@ -69,7 +69,6 @@ h1#login_header {
 
 .problem_otd p {
 	font-size: 16px;
-	width: 1000px;
 	margin: 0 auto;
 	padding: 5px 10px;
 }
@@ -80,6 +79,8 @@ h1#login_header {
 	margin: 0 auto;
 	border: 2px solid #777;
 	border-radius: 3px;
+	height: 300px;
+	overflow-y: scroll;
 }
 
 #queue span{
@@ -91,7 +92,7 @@ h1#login_header {
 }
 
 #queue li{
-	font-size: 18px;
+	font-size: 16px;
 	padding: 5px 5px 5px 10px;
 	text-align: left;
 }
@@ -105,7 +106,7 @@ h1#login_header {
 
 #queue span:first-of-type{
 	margin-left: 10px;
-	width: 140px;
+	width: 160px;
 }
 
 #queue .problemType{
@@ -113,7 +114,7 @@ h1#login_header {
 }
 
 #queue .RequestedTA {
-	width: 130px;
+	width: 140px;
 }
 
 #queue .time {
