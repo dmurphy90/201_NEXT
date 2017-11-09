@@ -120,6 +120,11 @@ h1#login_header {
 	text-align: right;
 }
 
+button {
+	outline: none;
+	cursor: pointer;
+}
+
 .clearFix {
 	clear: both;
 }
