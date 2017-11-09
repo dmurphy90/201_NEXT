@@ -30,7 +30,7 @@ var usersData = [
   ['Man', 'Lego', 'student', 'seattle-201d27']
 ];
 
-var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
+var testProblems = [['DavenportR','number1','StuartM','seattle-201d27'],['MassieM', 'number2', 'BhartiB','seattle-201d27'],['VanNessJ', 'number 3', 'EvansJ','seattle-201d27'],['NorzaH', 'number4', 'StuartM', 'seattle-201d27'], ['MurphyD', 'number5', 'EvansJ', 'seattle-201d27'], ['UnterseherK', 'number4', 'EvansJ','seattle-301d27']];
 
 // var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
 
@@ -54,9 +54,12 @@ function User(firstName, lastName, userType, course){
   this.profileImageFolderPath = 'images/';
   this.profileImagePath;
   this.imageFormat = '.jpg';
+  this.placeHolderUserId = 'LegoM';
+  this.placeHolderMessaage = 'Next Available';
   this.createUserId();
   this.setProfileImagePath();
   this.setPermissions();
+  this.setPlaceHolderNames();
 }
 
 User.prototype.createUserId = function() {
@@ -71,6 +74,12 @@ User.prototype.setPermissions = function() {
   this.userPerms = this.userPermissionsOptions[this.userType];
 };
 
+User.prototype.setPlaceHolderNames = function() {
+  if (this.userId === this.placeHolderUserId) {
+    this.firstName = this.placeHolderMessaage;
+    this.fullName = this.placeHolderMessaage;
+  }
+};
 function Course(courseNum, instructor) {
   this.courseNum = courseNum;
   this.instructor = instructor;
@@ -159,7 +168,7 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.requestIssue = requestIssue;
   this.requestedTA = requested_ta;
   this.requestTimeStamp = dateToday.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit'});
-  this.newli = '<span class="' + UserId + '">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
+  this.newli = '<span class="' + UserId + '">  ' + users[UserId].fullName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + users[this.requestedTA].fullName + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
   // this.createRequestTimeStamp();
   this.add_to_queue();
 }
