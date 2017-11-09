@@ -7,23 +7,13 @@
   background-color: #FFF;
 	margin: 20px 10px 20px 0;
 	width: 530px;
-=======
-  background-color: white;
-	margin: 20px 10px 20px 20px;
-	width: 500px;
->>>>>>> 620864f1854481b57e66de4d8fffdf07a0bc62cd
   position: absolute;
   left: 0;
 }
 
 .student_options {
-<<<<<<< HEAD
-  background-color: beige;
-	margin: 20px 0 20px 10px;
-=======
   background-color: black;
-	margin: 20px 20px 20px 10px;
->>>>>>> 620864f1854481b57e66de4d8fffdf07a0bc62cd
+	margin: 20px 0 20px 10px;
 	width: 400px;
   position: absolute;
   right: 0;

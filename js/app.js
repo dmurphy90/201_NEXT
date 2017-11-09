@@ -180,12 +180,8 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
   this.requestIssue = requestIssue;
   this.requestedTA = requested_ta;
   this.requestTimeStamp = dateToday.toLocaleTimeString('en-US',{hour: '2-digit', minute: '2-digit'});
-<<<<<<< HEAD
   this.newli = '<span class="' + UserId + '">  ' + users[UserId].fullName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + users[this.requestedTA].fullName + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
   // this.createRequestTimeStamp();
-=======
-  this.newli = '<span class="' + UserId + '">  ' + users[UserId].firstName + ' </span><span class="problemType"> ' + this.requestIssue + ' </span><span class="RequestedTA">  ' + this.requestedTA + '</span><span class="time"> ' + this.requestTimeStamp + '</span>';
->>>>>>> 620864f1854481b57e66de4d8fffdf07a0bc62cd
   this.add_to_queue();
 }
 
