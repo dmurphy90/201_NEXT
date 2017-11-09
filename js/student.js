@@ -1,33 +1,36 @@
 'use strict';
 
-// var courses = {};
-// var aCourse = {
-//   courseNum: 'seattle-201d27',
-//   instructor: 'Brian Nations',
-//   availableTA:['StuartM', 'BhartiB', 'EvansJ']
-// };
-//
-// courses['seattle-201d27'] = aCourse;
+function testCourses(){
+  var courses = {};
+  var aCourse = {
+    courseNum: 'seattle-201d27',
+    instructor: 'Brian Nations',
+    availableTA:['StuartM', 'BhartiB']
+  };
+  courses['seattle-201d27'] = aCourse;
+  localStorage.courses = JSON.stringify(courses);
+}
+
+testCourses();
 
 var userCourse;
 var activeUser;
-var request_array_suffix = '_arr';
-var pause_array_suffix = '_pause';
-var pause_resume_btn = document.getElementById('pause_resume_btn');
+var currentUser;
+var refresh_intervalId;
+var student_requested_ta;
 
-var enterQueueBtn = document.getElementById('enter_queue_btn');
 var pickTA = document.getElementById('pick_ta');
 var problemType = document.getElementById('prob_type');
 var flip_front = document.getElementById('enter_queue');
 var flip_back = document.getElementById('pause_resume');
 var remove_request_btn = document.getElementById('remove_request_btn');
-var student_requested_ta;
-
+var studentHeader = document.getElementById('student_header');
 var queueDisplay = document.getElementById('queue');
 
 function createList(course) {
   var queueDisplay = document.getElementById('queue');
   //reorder the array if any requests are paused
+  get_theQueues();
   the_queues.pause_handler(course);
   for (var a = 0; a < the_queues[course + '_arr'].length; a++) {
     var newLi = document.createElement('li');
@@ -38,35 +41,38 @@ function createList(course) {
     console.log('newLi', newLi);
   }
   setPauseClass(course);
-}
-createList('seattle-201d27');
-
-function fillPage() {
-  var currentUser = users[sessionStorage.username].fullName;
-  // var currentCourse = users[sessionStorage.username].currentCourse;
-  // var availableTAs = courses[currentCourse].availableTA;
-  var studentHeader = document.getElementById('student_header');
-  studentHeader.innerHTML = currentUser;
-  // var addTA = document.getElementById('pick_ta');
-  // for (var i = 0; i < availableTAs.length; i++) {
-  //   var optionTA = document.createElement('option');
-  //   optionTA.innerHTML = availableTAs[i];
-  //   addTA.appendChild(optionTA);
-  // }
+  set_theQueues();
 }
 
 function student_request_event_listeners() {
   if( sessionStorage.username){
     userCourse = users[sessionStorage.username].currentCourse;
     activeUser = sessionStorage.username;
+    currentUser = users[sessionStorage.username].fullName;
+    studentHeader.innerHTML = currentUser;
   }
+  set_available_ta_dropdown();
   flip_front.addEventListener('click', enterQueue);
   flip_back.addEventListener('click', pauseResume);
   remove_request_btn.addEventListener('click', removeRequest);
   pickTA.addEventListener('change', displaySelectedTA);
 }
 
-function displaySelectedTA(e) {
+function set_available_ta_dropdown(){
+  if(localStorage.courses){
+    var courses = JSON.parse(localStorage.courses);
+    var availableTAs = courses[userCourse].availableTA;
+    var addTA = document.getElementById('pick_ta');
+    for (var i = 0; i < availableTAs.length; i++) {
+      var optionTA = document.createElement('option');
+      optionTA.setAttribute('value', availableTAs[i]);
+      optionTA.innerHTML = users[availableTAs[i]].fullName;
+      addTA.appendChild(optionTA);
+    }
+  }
+}
+
+function displaySelectedTA() {
   var selectedTA = document.getElementById('ta_image_wrap');
   selectedTA.innerHTML = '';
   var TAPic = document.createElement('img');
@@ -75,11 +81,13 @@ function displaySelectedTA(e) {
   selectedTA.appendChild(TAPic);
 }
 
-function enterQueue(e) {
+function enterQueue() {
+  get_theQueues();
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(180deg)';
   remove_request_btn.classList.toggle('active');
   var student_requestIssue = problemType.value;
-  var student_request = new HelpRequest(activeUser, student_requestIssue, student_requested_ta, userCourse);
+  new HelpRequest(activeUser, student_requestIssue, student_requested_ta, userCourse);
+  set_theQueues();
   var queueDisplay = document.getElementById('queue');
   queueDisplay.innerHTML = '';
   createList(userCourse);
@@ -89,46 +97,51 @@ function removeRequest(e) {
   e.preventDefault();
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(0deg)';
   remove_request_btn.classList.toggle('active');
+  get_theQueues();
   the_queues.deleteRequest(userCourse, activeUser);
+  set_theQueues();
   queueDisplay.innerHTML = '';
   createList(userCourse);
 }
 
 function pauseResume(e) {
   e.preventDefault();
+  get_theQueues();
   the_queues.togglePauseResume(userCourse, activeUser);
-}
-
-function pause_handler(aCourse){
-  //if there are no requests on pause, exit
-  if (! the_queues[aCourse.pausedRequests]) return;
-  var temp_course_array = [];
-  var pause_request_array = the_queues[aCourse.pausedRequests];
-  var course_request_array = the_queues[aCourse.requestArray];
-  for (var i = 0; i < course_request_array.length; i++){
-    if (pause_request_array.includes(course_request_array[i])){
-      temp_course_array.push(course_request_array[i + 1]);
-      temp_course_array.push(course_request_array[i]);
-      i++;
-    } else {
-      temp_course_array.push(course_request_array[i]);
-    }
-  }
-  the_queues[aCourse.requestArray] = temp_course_array;
+  set_theQueues();
 }
 
 if (localStorage.potd) {
-  console.log('this is working');
   currentPotd.innerHTML = '';
   currentPotd.innerHTML = localStorage.potd;
 }
 
 function setPauseClass(course) {
+  get_theQueues();
   var pauseIds = the_queues.getPausedArray(course);
   for (var p = 0; p < pauseIds.length; p++){
     document.getElementById(pauseIds[p]).classList.add('pause');
   }
 }
 
-fillPage();
+function get_theQueues(){
+  the_queues = JSON.parse(localStorage.the_queues);
+  the_queues = Object.setPrototypeOf(the_queues, new Queues());
+}
+
+function set_theQueues(){
+  localStorage.the_queues = JSON.stringify(the_queues);
+}
+
+function refreshQueueInterval(){
+  refresh_intervalId = setInterval(refreshQueue, 10000);
+}
+
+function refreshQueue(){
+  queueDisplay.innerHTML = '';
+  createList(userCourse);
+}
+
 student_request_event_listeners();
+createList(userCourse);
+refreshQueueInterval();
