@@ -15,12 +15,12 @@ header h1 {
 	text-align: center;
 }
 
-.logo {
+#header_logo {
 	margin: 20px 30px;
 	float: left;
 	height: 80px;
-	width: 100px;
-	outline: 1px dashed;
+	/*width: 100px;*/
+	/*outline: 1px dashed;*/
 }
 
 #log_out_btn {
