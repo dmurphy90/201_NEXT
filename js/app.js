@@ -103,7 +103,6 @@ Queues.prototype.togglePauseResume = function(courseId, requestId){
   // if the request is not in the pause array add it then exit the function
   var course_pause_array = this.getPausedArray(courseId);
   if (! course_pause_array.includes(requestId)){
-    console.log('push to pause');
     this[theRequest.pausedRequests].push(requestId);
     return;
   }
@@ -112,7 +111,6 @@ Queues.prototype.togglePauseResume = function(courseId, requestId){
 };
 
 Queues.prototype.pause_handler = function(courseId) {
-  console.log('pause_handler');
   var pausedRequests = this.getPausedArray(courseId);
   var requestArray = this.getRequestArray(courseId);
   //if there are no requests on pause, exit
@@ -127,6 +125,8 @@ Queues.prototype.pause_handler = function(courseId) {
           break;
         }
       }
+      //if the paused requests were last on the list, then they have to be add here
+      if ( !temp_course_array.includes(requestArray[i])) temp_course_array.push(requestArray[i]);
     } else if (!temp_course_array.includes(requestArray[i])) {
       temp_course_array.push(requestArray[i]);
     }
@@ -225,8 +225,16 @@ function signout(event) {
   window.location = './index.html';
 }
 
+if (!localStorage.the_queues) {
+  localStorage.the_queues = JSON.stringify(the_queues);
+};
 
-localStorage.the_queues = JSON.stringify(the_queues);
+if (!localStorage.users){
+  localStorage.users = JSON.stringify(users);
+}
+
+
+//localStorage.the_queues = JSON.stringify(the_queues);
 // logout.addEventListener('click', signout);
 // var myCourse = 'seattled27';
 // the_queues[myCourse].kevin_miller_d27
