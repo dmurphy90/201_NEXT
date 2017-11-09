@@ -23,11 +23,6 @@ header h1 {
 	outline: 1px dashed;
 }
 
-img#header_logo {
-  height: 125px;
-  float:left;
-}
-
 #log_out_btn {
 	float: right;
 	padding: 12px 8px;
@@ -41,6 +36,14 @@ main {
 	height: 100%;
 	margin: 140px auto;
 	outline: 1px dashed;
+}
+
+h1#login_header {
+	font-family: helvetica;
+	font-size: 60px;
+	margin: 30px;
+	text-align: center;
+	color: #000;
 }
 
 .problem_otd {
