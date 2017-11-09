@@ -5,7 +5,6 @@ header {
 	top: 0;
 	background: #000;
   color: #fff;
-	outline: 1px dashed;
 }
 
 header h1 {
@@ -32,7 +31,6 @@ header h1 {
 	background-color: #cc3524;
   color: #fff;
   font-family: 'Monsterrat', sans-serif;
-  font-weight: bold;
   border: none;
   border-radius: 30px;
 }
@@ -58,7 +56,6 @@ h1#login_header {
 	padding: 20px;
 	margin: 0 auto;
 	margin-top: 20px;
-	outline: 1px dashed;
 }
 
 .problem_otd h2 {
@@ -135,7 +132,6 @@ footer {
  	position:fixed;
  	bottom: 0;
 	background-color: #000;
-	outline: 1px dashed;
 }
 
 .pause {

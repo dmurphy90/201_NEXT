@@ -15,7 +15,6 @@ header {
   top: 0;
   background: #000;
   color: #fff;
-  outline: 1px dashed;
   font-family: 'Monsterrat', sans-serif;
   font-weight: bold;
 }
@@ -66,7 +65,6 @@ button#login_btn {
   height: 40px;
   font-size: 23px;
   font-family: 'Monsterrat', sans-serif;
-  font-weight: bold;
   margin-top: 40px;
   margin-left: 460px;
   background-color: #cc3524;
@@ -80,13 +78,12 @@ button#signup_button {
   height: 40px;
   border: none;
   border-radius: 30px;
-  background-color: #000;
+  background-color: #cc3524;
   color: #fff;
   margin-top: 0px;
   margin-bottom: 70px;
   font-size: 20px;
   font-family: 'Monsterrat', sans-serif;
-  font-weight: bold;
 }
 
 #signup_overlay {
@@ -185,5 +182,4 @@ footer#login_footer {
   position: fixed;
   bottom: 0;
   background: #000;
-  outline: 1px dashed;
 }
