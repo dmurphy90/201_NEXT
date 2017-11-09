@@ -2,7 +2,7 @@
 
 //var test_TA = 'StuartM';
 var currentCourseToDislay = 'Unavailable';
-
+var refresh_intervalId;
 //object to hold all course objects
 var courses = {};
 
@@ -119,6 +119,7 @@ function createList(course) {
   if (course === 'Unavailable') {
     var olClear = document.getElementById('queue');
     olClear.innerHTML = '';
+    studentCard('LegoM');
     return;
   }
   else {
@@ -248,3 +249,14 @@ function signout(event) {
   window.location = './index.html';
 }
 logout.addEventListener('click', signout);
+
+function refreshQueueInterval(){
+  refresh_intervalId = setInterval(refreshQueue, 10000);
+}
+
+function refreshQueue(){
+  var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
+  createList(userCourse);
+}
+createList(document.getElementById('active_course_ul').getAttribute('data-value'));
+refreshQueueInterval();

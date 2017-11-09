@@ -4,6 +4,7 @@ var logout = document.getElementById('log_out_btn')
 var dateToday = new Date();
 //object for all users
 var users = {};
+var courses = {};
 var usersData = [
   ['Bhavya', 'Bharti', 'ta', 'seattle-201d27'],
   ['Brian', 'Nations', 'instructor', 'seattle-201d27'],
@@ -211,6 +212,17 @@ function create_user_from_data(firstName, lastName, userType, course){
 }
 
 build_users_object();
+// biulds courses object
+function build_course_object(){
+  var mynewcourse;
+  for (var i = 0; i < coursesData.length; i++){
+    mynewcourse = new Course(coursesData[i].courseName, coursesData[i].courseInstructor);
+    courses[coursesData[i].courseName] = mynewcourse;
+  }
+}
+//this function creates a new User
+
+build_course_object();
 
 var the_queues = new Queues();
 // this is just for testing, the HelpRequest needs to be called once the student clicks add to //queue button
@@ -232,9 +244,3 @@ if (!localStorage.the_queues) {
 if (!localStorage.users){
   localStorage.users = JSON.stringify(users);
 }
-
-
-//localStorage.the_queues = JSON.stringify(the_queues);
-// logout.addEventListener('click', signout);
-// var myCourse = 'seattled27';
-// the_queues[myCourse].kevin_miller_d27
