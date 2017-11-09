@@ -8,6 +8,7 @@ var currentCourseToDislay = 'Unavailable';
 var refresh_intervalId;
 //object to hold all course objects
 var courses = JSON.parse(localStorage.courses);
+get_theQueues();
 
 //ref to active_course drop down
 var active_course_ul = document.getElementById('active_course_ul');
@@ -42,6 +43,8 @@ function adminHeaderName() {
 adminHeaderName();
 
 function set_active_course(e) {
+  //grab courses from localStorage
+  getTheCourses();
   //get the value of the active course before it is changed
   var current_active_course = active_course_ul.dataset.value;
   //if the function returns false, then no data change has taken place
@@ -62,6 +65,8 @@ function set_active_course(e) {
   if (active_user_type === 'ta'){
     update_available_ta(active_ta, current_active_course, updated_active_course);
   }
+  // return updates to localStorage
+  setTheCurses();
 }
 
 function update_available_ta(active_ta, remove_from_course, add_to_course) {
@@ -127,6 +132,7 @@ function studentCard(user) {
 };
 // this builds the list everytime a change is made
 function createList(course) {
+  get_theQueues();
   if (course === 'Unavailable') {
     var olClear = document.getElementById('queue');
     olClear.innerHTML = '';
@@ -161,8 +167,8 @@ function createList(course) {
     setPauseClass(course);
     studentCard(the_queues[course + '_arr'][0]);
 
-
   };
+  set_theQueues();
 }
 
 function setButtonListener() {
@@ -177,6 +183,8 @@ function setButtonListener() {
 
 
 function bump(e) {
+  console.log('bump button fired');
+  get_theQueues();
   var userToBump = document.getElementById('user_image_wrap').getAttribute('data-id');
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
   if (userToBump != '') {
@@ -189,12 +197,15 @@ function bump(e) {
     removeFromBeingHelpedArray(userCourse, userToBump);
     createList(userCourse);
   }
+  set_theQueues();
 }
 // adds the user to array of being helped for the course they are in
 
 
 
 function nextRemove(e) {
+  console.log('next button fired');
+  get_theQueues();
   var userToRemove = document.getElementById('user_image_wrap').getAttribute('data-id');
   console.log('next remove', userToRemove);
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
@@ -210,6 +221,7 @@ function nextRemove(e) {
   if(index != -1) {
     the_queues[userCourse + '_arr'].splice(index, 1);
   }
+  set_theQueues();
   createList(userCourse);
 }
 
@@ -217,26 +229,31 @@ function nextRemove(e) {
 
 // adds the user to array of being helped for the course they are in
 function beingHelped(userId) {
+  get_theQueues();
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
   if (the_queues[userCourse + '_beingHelped'].includes(userId)) {
     return;
   } else {
     the_queues[userCourse + '_beingHelped'].push(userId);
+    set_theQueues();
   }
   return;
 }
 
 // removes user from being helped status
 function removeFromBeingHelpedArray(userCourse, userId) {
+  get_theQueues();
   if (userCourse != 'Unavailable') {
     var helpedIndex = the_queues[userCourse + '_beingHelped'].indexOf(userId);
     if(helpedIndex != -1) {
       the_queues[userCourse + '_beingHelped'].splice(helpedIndex, 1);
     }
   }
+  set_theQueues();
 }
 
 function setPauseClass(course) {
+  get_theQueues();
   var pauseIds = the_queues.getPausedArray(course);
   for (var p = 0; p < pauseIds.length; p++){
     document.getElementById(pauseIds[p]).classList.add('pause');
@@ -254,6 +271,13 @@ function setLocal(objectName, objectToSet) {
 
 //console.log('getlocal',getLocal(the_queues););
 
+function getTheCourses () {
+  courses = JSON.parse(localStorage.courses);
+}
+function setTheCurses () {
+  localStorage.courses = JSON.stringify(courses);
+}
+
 
 function signout(event) {
   sessionStorage.clear();
@@ -270,4 +294,13 @@ function refreshQueue(){
   createList(userCourse);
 }
 createList(document.getElementById('active_course_ul').getAttribute('data-value'));
-refreshQueueInterval();
+// refreshQueueInterval();
+
+function get_theQueues(){
+  the_queues = JSON.parse(localStorage.the_queues);
+  the_queues = Object.setPrototypeOf(the_queues, new Queues());
+}
+
+function set_theQueues(){
+  localStorage.the_queues = JSON.stringify(the_queues);
+}
