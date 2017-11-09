@@ -34,7 +34,7 @@
 .student_options h3 {
 	margin: 10px;
 	font-size: 16px;
-  font-family: arial;
+  /*font-family: 'Monsterrat', sans-serif;*/
 }
 
 select {
@@ -51,7 +51,6 @@ select {
   overflow: hidden;
   border: 1px inset black;
   text-align: center;
-  font-family: arial;
   font-size: 16px;
   line-height: 200px;
 }
@@ -63,18 +62,18 @@ select {
   background-image: -ms-linear-gradient(top, #bbb, #999);
   background-image: -o-linear-gradient(top, #bbb, #999);
   background-image: linear-gradient(to bottom, #bbb, #999);
-  text-shadow: 1px 1px 3px #666666;
-  font-size: 16px;
-  padding: 10px 20px;
-  margin: 10px;
-  width: 95px;
+  padding: 8px 16px;
+  margin-right: 20px;
+  /*width: 120px;*/
   text-align: center;
   pointer-events: none;
   display: inline-block;
   position: absolute;
   top: 150px;
   left: 10px;
-  font-family: Gotham Rounded SSm A,Gotham Rounded SSm B;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Monsterrat', sans-serif;
   color: #fff;
   border: 0;
   border-radius: 30px;
@@ -127,8 +126,8 @@ select {
   background-image: -ms-linear-gradient(top, #42ca8b, #42ca8b);
   background-image: -o-linear-gradient(top, #42ca8b, #42ca8b);
   background-image: linear-gradient(to bottom, #42ca8b, #42ca8b);
-  text-shadow: 1px 1px 3px #666666;
-  font-family: Gotham Rounded SSm A,Gotham Rounded SSm B;
+  /*text-shadow: 1px 1px 3px #666666;*/
+  /*font-family: 'Monsterrat', sans-serif;*/
   color: #fff;
   font-size: 16px;
   padding: 10px 20px 10px 20px;
@@ -156,8 +155,8 @@ select {
   background-image: -ms-linear-gradient(top, #db9834, #db9834);
   background-image: -o-linear-gradient(top, #db9834, #db9834);
   background-image: linear-gradient(to bottom, #db9834, #db9834);
-  text-shadow: 1px 1px 3px #666666;
-  font-family: Gotham Rounded SSm A,Gotham Rounded SSm B;
+  /*text-shadow: 1px 1px 3px #666666;*/
+  /*font-family: 'Monsterrat', sans-serif;*/
   color: #fff;
   font-size: 16px;
   padding: 10px 20px 10px 20px;
