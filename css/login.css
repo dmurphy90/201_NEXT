@@ -75,6 +75,10 @@ button#login_btn {
   border-radius: 30px;
 }
 
+button#login_btn:hover {
+  background-color: #b62f20;
+}
+
 button#signup_button {
   width: 200px;
   height: 40px;
@@ -87,6 +91,10 @@ button#signup_button {
   font-size: 20px;
   font-family: 'Monsterrat', sans-serif;
   font-weight: bold;
+}
+
+button#signup_button:hover {
+  background-color: #222;
 }
 
 #signup_overlay {
@@ -165,6 +173,10 @@ button#user_signup {
   font-weight: bold;
 }
 
+button#user_signup:hover {
+  background-color: #b62f20;
+}
+
 button#cancel_signup {
   margin-left: 160px;
   margin-top: 20px;
@@ -177,6 +189,10 @@ button#cancel_signup {
   font-family: 'Monsterrat', sans-serif;
   font-size: 15px;
   font-weight: bold;
+}
+
+button#cancel_signup:hover {
+  background-color: #222;
 }
 
 footer#login_footer {
