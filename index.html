@@ -2,55 +2,64 @@
 <html>
   <head>
     <title>NEXT! TA Help System</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/student.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
   </head>
   <body>
-    <header>
-      <div class="header_logo">logo<div>
-        <!-- <img id="header_logo" src="images/NEXT.png"> -->
+    <header id="login_header">
+      <div>
+        <img id="header_logo" src="images/NEXT.png">
+        <!-- <img id="login_header_logo" src="images/NEXT.png"> -->
+      </div>
     </header>
     <main>
-      <div class="login">
-        <h1>Please Enter Your Login Info:</h1>
-        <form id="login_form">
-          <fieldset>
-            <label for="username">Username:</label><br>
-            <input type="text" name="username" placeholder="Username">
-          </fieldset>
-          <fieldset>
-            <label for="password">Password:</label><br>
-            <input type="password" name="password" placeholder="Password">
-          </fieldset>
-          <button id="login_btn" type="submit">Login</button>
-        </form>
-      </div>
-      <button id="signup_button">Sign-Up</button>
-        <div id="signup_overlay"></div>
-        <div id="signup_popup">
-          <form id="signup_form">
+      <section class="new_user">
+        <button id="signup_button">Sign-Up</button>
+          <div id="signup_overlay"></div>
+          <div id="signup_popup">
+            <form id="signup_form">
+              <fieldset>
+                <label for="firstName">First Name:</label><br>
+                <input type="text" name="firstName">
+              </fieldset>
+              <fieldset>
+                <label for="lastName">Last Name:</label><br>
+                <input type="text" name="lastName">
+              </fieldset>
+              <fieldset id="userType">
+                <label for="userType">User Type</submit><br>
+                <input type="radio" name="userType" value="Student">Student<br>
+                <input type="radio" name="userType" value="TA">TA<br>
+                <input type="radio" name="userType" value="Instructor">Instructor<br>
+              </fieldset>
+              <fieldset id="course">
+                <label for="course">Course:</label><br>
+                <input type="text" name="course">
+              </fieldset>
+              <button id="user_signup" type="submit">Sign-Up</button><br>
+              <button id="cancel_signup">Cancel</button>
+            </form>
+          </div>
+      </section>
+      <section id="login_section">
+        <div class="login">
+          <h1 id=login_header>Please Enter Your Login Info:</h1>
+          <form id="login_form">
             <fieldset>
-              <input type="text" name="firstName" placeholder="First Name">
+              <input type="text" name="username" placeholder="Username">
             </fieldset>
             <fieldset>
-              <input type="text" name="lastName" placeholder="Last Name">
+              <input type="password" name="password" placeholder="Password">
             </fieldset>
-            <fieldset>
-              <input type="radio" name="userType" value="Student">Student<br>
-              <input type="radio" name="userType" value="TA">TA<br>
-              <input type="radio" name="userType" value="Instructor">Instructor<br>
-            </fieldset>
-            <fieldset>
-              <input type="text" name="course" placeholder="Course">
-            </fieldset>
-            <button id="user_signup" type="submit">Sign-Up</button>
-            <button id="cancel_signup">Cancel</button>
+            <button id="login_btn" type="submit">Login</button>
           </form>
         </div>
+      </section>
     </main>
   </body>
-  <footer>
+  <footer id="login_footer">
   </footer>
   <script src="js/app.js"></script>
   <!-- <script src="js/admin.js"></script> -->
