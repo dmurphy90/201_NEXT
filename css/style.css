@@ -5,7 +5,7 @@ header {
 	top: 0;
 	background: #000;
   color: #fff;
-	outline: 1px dashed;
+	z-index: 9;
 }
 
 header h1 {
@@ -21,20 +21,19 @@ header h1 {
 	float: left;
 	height: 80px;
 	/*width: 100px;*/
-	/*outline: 1px dashed;*/
 }
 
 #log_out_btn {
 	float: right;
-	padding: 12px 8px;
-	font-size: 18px;
+	padding: 8px 16px;
+	font-size: 16px;
 	margin: 30px;
 	background-color: #cc3524;
   color: #fff;
   font-family: 'Monsterrat', sans-serif;
-  font-weight: bold;
   border: none;
   border-radius: 30px;
+  padding: 1em 1.5em;
 }
 
 main {
@@ -42,7 +41,6 @@ main {
 	width: 1200px;
 	height: 100%;
 	margin: 140px auto;
-	outline: 1px dashed;
 	font-family: 'Montserrat', sans-serif;
 }
 
@@ -55,20 +53,24 @@ h1#login_header {
 }
 
 .problem_otd {
-	padding: 20px;
+	/*padding: 20px;*/
 	margin: 0 auto;
 	margin-top: 20px;
-	outline: 1px dashed;
+	border: 1px solid #d3d3d3
 }
 
 .problem_otd h2 {
 	text-align: center;
 	font-size: 20px;
-	margin: 20px;
+	margin: 10px 0 5px 0;
+	font-weight: bold;
+	line-height: 1.1;
 }
 
 .problem_otd p {
-	font-size: 16px;
+	font-size: 14px;
+	font-family: Helvetica;
+	line-height: 1.5em;
 	margin: 0 auto;
 	padding: 5px 10px;
 }
@@ -177,7 +179,6 @@ footer {
  	position:fixed;
  	bottom: 0;
 	background-color: #000;
-	outline: 1px dashed;
 }
 
 .pause {
