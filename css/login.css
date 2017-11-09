@@ -15,7 +15,6 @@ header {
   top: 0;
   background: #000;
   color: #fff;
-  outline: 1px dashed;
   font-family: 'Monsterrat', sans-serif;
   font-weight: bold;
 }
@@ -64,9 +63,8 @@ form#login_form input{
 button#login_btn {
   width: 190px;
   height: 40px;
-  font-size: 23px;
+  font-size: 16px;
   font-family: 'Monsterrat', sans-serif;
-  font-weight: bold;
   margin-top: 40px;
   margin-left: 460px;
   background-color: #cc3524;
@@ -84,17 +82,17 @@ button#signup_button {
   height: 40px;
   border: none;
   border-radius: 30px;
-  background-color: #000;
+  background-color: #cc3524;
   color: #fff;
   margin-top: 0px;
   margin-bottom: 70px;
-  font-size: 20px;
+  margin-left: 20px;
+  font-size: 16px;
   font-family: 'Monsterrat', sans-serif;
-  font-weight: bold;
 }
 
 button#signup_button:hover {
-  background-color: #222;
+  background-color: #b62f20;
 }
 
 #signup_overlay {
@@ -169,8 +167,7 @@ button#user_signup {
   border-radius: 30px;
   border: none;
   font-family: 'Monsterrat', sans-serif;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 16px;
 }
 
 button#user_signup:hover {
@@ -182,17 +179,16 @@ button#cancel_signup {
   margin-top: 20px;
   width: 150px;
   height: 40px;
-  background-color: #000;
-  color: #fff;
+  background-color: #fff;
+  color: #cc3524;
   border-radius: 30px;
-  border: none;
+  border: 1px solid #cc3524;
   font-family: 'Monsterrat', sans-serif;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 16px;
 }
 
 button#cancel_signup:hover {
-  background-color: #222;
+  background-color: #fdf3f2;
 }
 
 footer#login_footer {
@@ -201,5 +197,4 @@ footer#login_footer {
   position: fixed;
   bottom: 0;
   background: #000;
-  outline: 1px dashed;
 }
