@@ -116,11 +116,6 @@ function pauseResume(e) {
   set_theQueues();
 }
 
-if (localStorage.potd) {
-  currentPotd.innerHTML = '';
-  currentPotd.innerHTML = localStorage.potd;
-}
-
 function setPauseClass(course) {
   get_theQueues();
   var pauseIds = the_queues.getPausedArray(course);
@@ -145,9 +140,15 @@ function refreshQueueInterval(){
 function refreshQueue(){
   queueDisplay.innerHTML = '';
   createList(userCourse);
+  if (localStorage.potd) {
+    currentPotd.innerHTML = '';
+    currentPotd.innerHTML = localStorage.potd;
+  }
+
 }
 
 student_request_event_listeners();
+
 
 
 function signout(event) {

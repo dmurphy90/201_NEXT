@@ -120,6 +120,7 @@ function studentCardEvent(e) {
   tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
   var tempName = document.getElementById('student_name');
   tempName.innerText = users[userid].firstName;
+  beingHelped(userid);
 };
 
 function studentCard(user) {
@@ -129,6 +130,7 @@ function studentCard(user) {
   tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
   var tempName = document.getElementById('student_name');
   tempName.innerText = users[userid].firstName;
+
 };
 // this builds the list everytime a change is made
 function createList(course) {
@@ -147,7 +149,7 @@ function createList(course) {
     for (var a = 0; a < the_queues[course + '_arr'].length; a++) {
       var newLi = document.createElement('li');
       var userid = the_queues[course + '_arr'][a];
-      console.log('user id before appending',userid);
+      //console.log('user id before appending',userid);
       newLi.innerHTML = (a + 1 + '    ') + the_queues[course][userid].newli;
       queueDisplay.appendChild(newLi);
       newLi.setAttribute('id',userid);
@@ -182,22 +184,24 @@ function setButtonListener() {
 
 
 
-function bump(e) {
-  console.log('bump button fired');
+function bump() {
   get_theQueues();
+
   var userToBump = document.getElementById('user_image_wrap').getAttribute('data-id');
+
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
+  ;
   if (userToBump != '') {
     var index = the_queues[userCourse + '_arr'].indexOf(userToBump);
     if(index != -1) {
       the_queues[userCourse + '_arr'].splice(index, 1);
     };
-
     the_queues[userCourse + '_arr'].push(userToBump);
+    set_theQueues();
     removeFromBeingHelpedArray(userCourse, userToBump);
     createList(userCourse);
   }
-  set_theQueues();
+
 }
 // adds the user to array of being helped for the course they are in
 
@@ -294,7 +298,7 @@ function refreshQueue(){
   createList(userCourse);
 }
 createList(document.getElementById('active_course_ul').getAttribute('data-value'));
-refreshQueueInterval();
+//refreshQueueInterval();
 
 function get_theQueues(){
   the_queues = JSON.parse(localStorage.the_queues);
