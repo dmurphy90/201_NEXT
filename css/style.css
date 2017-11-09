@@ -3,11 +3,13 @@ header {
 	position:fixed;
 	height:120px;
 	top: 0;
-	background: #fff;
+	background: #000;
+  color: red;
 	outline: 1px dashed;
 }
 
 header h1 {
+  font-family: helvetica;
 	font-size: 60px;
 	margin: 30px;
 	text-align: center;
@@ -21,6 +23,11 @@ header h1 {
 	outline: 1px dashed;
 }
 
+img#header_logo {
+  height: 125px;
+  float:left;
+}
+
 #log_out_btn {
 	float: right;
 	padding: 12px 8px;
@@ -29,7 +36,8 @@ header h1 {
 }
 
 main {
-	width: 1200px;
+	background-color: grey;
+	width: 960px;
 	height: 100%;
 	margin: 140px auto;
 	outline: 1px dashed;
@@ -55,22 +63,10 @@ main {
 	padding: 5px 10px;
 }
 
-.student_q {
-	margin: 0  auto;
-	margin-top: 20px;
-	width: 960px;
-	outline: 1px dashed;
-}
-
 #queue {
 	width: 100%;
 	line-height: 24px;
 	margin: 20px auto;
-}
-
-#available_ta , #problem_type{
-	width: 400px;
-	line-height: 24px;
 }
 
 #queue li, #available_ta li, #problem_type li{
@@ -113,119 +109,8 @@ main {
 	text-align: right;
 }
 
-.student_options {
-	margin: 0 auto;
-	margin-top: 20px;
-	width: 1000px;
-	outline: 1px dashed;
-	height: 160px;
-}
-
-.student_options .left{
-	display: inline-block;
-	float: left;
-}
-
-.student_options .left h3 {
-	text-align: center;
-	margin: 10px 0;
-	font-size: 20px;
-}
-
-.student_options .right{
-	margin: 10px 0;
-	display: inline-block;
-	float: right;
-}
-
-.student_options .right button {
-	display: block;
-	width: 220px;
-	padding: 8px 12px;
-	font-size: 16px;
-	margin: 10px;
-}
-
-.ta_view_right {
-	float: right;
-}
-
-.ta_view_left {
-	width:540px;
-	height: 360px;
-	float: left;
-}
-
-.student_info_card {
-	width:460px;
-	height: 300px;
-	outline: 1px dashed;
-}
-
-#user_image_wrap {
-	float:left;
-	margin:25px;
-}
-
-#student_name {
-	float: left;
-	margin-top: 65px;
-	margin-left: 40px;
-}
-
-.student_info_card div {
-	clear:both;
-	height: 200px;
-}
-
-#bump {
-	padding:8px 16px;
-	font-size: 20px;
-	font-weight: bold;
-	float: right;
-	margin-right:20px;
-}
-
-#next{
-	padding:8px 16px;
-	font-size: 20px;
-	font-weight: bold;
-	float: right;
-	margin-right:20px;
-}
-
 .clearFix {
 	clear: both;
-}
-
-#active_course {
-	float: left;
-}
-
-#active_course .drop_items {
-	opacity: 0;
-	height: 0;
-	overflow: hidden;
-}
-
-#active_course .drop_items.active {
-	opacity: 1;
-	height: auto;
-	overflow: auto;
-	transition: 350ms all;
-}
-
-#active_course ul {
-	cursor: pointer;
-}
-
-#active_course .drop_heading {
-	padding:10px;
-}
-
-#active_course li {
-	outline: 1px dashed;
-	padding: 10px 0;
 }
 
 footer {
@@ -237,28 +122,6 @@ footer {
 	outline: 1px dashed;
 }
 
-#potd_overlay {
-  display: none;
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  opacity: 0.5;
-  z-index: 9999;
-}
-
-#potd_popup {
-  display: none;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  width: 300px;
-  height: 150px;
-  margin-top: -75px;
-  margin-left: -150px;
-  background: #fff;
-  border: 2px solid #000;
-  z-index: 99999;
+.pause {
+	background: #F0F09D;
 }
