@@ -23,10 +23,11 @@ function closePopup() {
 function postPotd(event) {
   event.preventDefault();
   console.log('submitted');
-  var potd = event.target.potd_text.value;
+  var potd = event.target.commonissues.value;
   localStorage.potd = potd;
   console.log('problem of the day:', potd);
   potdPopup.style.display = 'none';
+  potdForm.reset();
 }
 
 // if (localStorage.potd) {
