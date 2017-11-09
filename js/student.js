@@ -26,6 +26,9 @@ var flip_back = document.getElementById('pause_resume');
 var remove_request_btn = document.getElementById('remove_request_btn');
 var studentHeader = document.getElementById('student_header');
 var queueDisplay = document.getElementById('queue');
+var selectedTA = document.getElementById('ta_image_wrap');
+var TA_Pic = document.createElement('img');
+
 
 function createList(course) {
   var queueDisplay = document.getElementById('queue');
@@ -56,6 +59,9 @@ function student_request_event_listeners() {
   flip_back.addEventListener('click', pauseResume);
   remove_request_btn.addEventListener('click', removeRequest);
   pickTA.addEventListener('change', displaySelectedTA);
+  student_requested_ta = pickTA.value;
+  TA_Pic.setAttribute('src', users[student_requested_ta].profileImagePath);
+  selectedTA.appendChild(TA_Pic);
 }
 
 function set_available_ta_dropdown(){
@@ -73,12 +79,11 @@ function set_available_ta_dropdown(){
 }
 
 function displaySelectedTA() {
-  var selectedTA = document.getElementById('ta_image_wrap');
   selectedTA.innerHTML = '';
-  var TAPic = document.createElement('img');
+  var TA_Pic = document.createElement('img');
   student_requested_ta = pickTA.value;
-  TAPic.setAttribute('src', users[student_requested_ta].profileImagePath);
-  selectedTA.appendChild(TAPic);
+  TA_Pic.setAttribute('src', users[student_requested_ta].profileImagePath);
+  selectedTA.appendChild(TA_Pic);
 }
 
 function enterQueue() {
@@ -153,4 +158,3 @@ logout.addEventListener('click', signout);
 
 createList(userCourse);
 refreshQueueInterval();
-
