@@ -1,12 +1,34 @@
 'use strict';
 
+var the_queues;
+var users;
+var refresh_intervalId;
+
+function init_objects_from_storage(){
+  // if (!the_queues){
+  //   the_queues = JSON.parse(localStorage.the_queues);
+  //   //the_queues = new Queues(the_queues);
+  //   //var theQ = new Queues();
+  //   //console.log('theQ: ', theQ);
+  //   the_queues = Object.setPrototypeOf(the_queues, new Queues());
+  //   console.log('the_queues', the_queues);
+  // }
+  if (!users){
+    users = JSON.parse(localStorage.users);
+    console.log('users', users);
+  }
+}
+
+init_objects_from_storage();
+//get_theQueues();
+
 var userCourse;
 var activeUser;
-var request_array_suffix = '_arr';
-var pause_array_suffix = '_pause';
-var pause_resume_btn = document.getElementById('pause_resume_btn');
+//var request_array_suffix = '_arr';
+//var pause_array_suffix = '_pause';
+//var pause_resume_btn = document.getElementById('pause_resume_btn');
 
-var enterQueueBtn = document.getElementById('enter_queue_btn');
+//var enterQueueBtn = document.getElementById('enter_queue_btn');
 var pickTA = document.getElementById('pick_ta');
 var problemType = document.getElementById('prob_type');
 var flip_front = document.getElementById('enter_queue');
@@ -16,6 +38,7 @@ var remove_request_btn = document.getElementById('remove_request_btn');
 var queueDisplay = document.getElementById('queue');
 
 function createList(course) {
+  get_theQueues();
   var queueDisplay = document.getElementById('queue');
   //reorder the array if any requests are paused
   the_queues.pause_handler(course);
@@ -28,8 +51,9 @@ function createList(course) {
     console.log('newLi', newLi);
   }
   setPauseClass(course);
+  set_theQueues();
 }
-createList('seattle-201d27');
+//createList('seattle-201d27');
 
 function student_request_event_listeners() {
   if( sessionStorage.username){
@@ -43,13 +67,17 @@ function student_request_event_listeners() {
 }
 
 function enterQueue(e) {
+  get_theQueues();
+  console.log('get: ', the_queues);
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(180deg)';
   var student_requested_ta = pickTA.value;
   var student_requestIssue = problemType.value;
   var student_request = new HelpRequest(activeUser, student_requestIssue, student_requested_ta, userCourse);
+  set_theQueues();
   var queueDisplay = document.getElementById('queue');
   queueDisplay.innerHTML = '';
   createList(userCourse);
+  console.log('set: ', the_queues);
 };
 
 function removeRequest(e) {
@@ -57,12 +85,16 @@ function removeRequest(e) {
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(0deg)';
   the_queues.deleteRequest(userCourse, activeUser);
   queueDisplay.innerHTML = '';
+  get_theQueues();
   createList(userCourse);
+  set_theQueues();
 }
 
 function pauseResume(e) {
   e.preventDefault();
+  get_theQueues()
   the_queues.togglePauseResume(userCourse, activeUser);
+  get_theQueues()
 }
 
 function pause_handler(aCourse){
@@ -96,4 +128,25 @@ function setPauseClass(course) {
   }
 }
 
+function get_theQueues(){
+  the_queues = JSON.parse(localStorage.the_queues);
+  the_queues = Object.setPrototypeOf(the_queues, new Queues());
+}
+
+function set_theQueues(){
+  localStorage.the_queues = JSON.stringify(the_queues);
+}
+
+function refreshQueueInterval(){
+  refresh_intervalId = setInterval(refreshQueue, 10000);
+}
+
+function refreshQueue(){
+  queueDisplay.innerHTML = '';
+  createList(userCourse);
+
+}
+
 student_request_event_listeners();
+createList(userCourse);
+refreshQueueInterval();

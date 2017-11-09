@@ -164,6 +164,7 @@ function HelpRequest(UserId, requestIssue, requested_ta, course){
 }
 
 HelpRequest.prototype.add_to_queue = function(){
+  console.log('help request add');
   if (!the_queues[this.course]) the_queues[this.course] = {};
   the_queues[this.course][this.UserId] = this;
   //add the pause and request array keys to the object for reference
@@ -224,8 +225,14 @@ function signout(event) {
   window.location = './index.html';
 }
 
+if (!localStorage.the_queues) {
+  localStorage.the_queues = JSON.stringify(the_queues);
+};
 
-localStorage.the_queues = JSON.stringify(the_queues);
+if (!localStorage.users){
+  localStorage.users = JSON.stringify(users);
+}
+
 // logout.addEventListener('click', signout);
 // var myCourse = 'seattled27';
 // the_queues[myCourse].kevin_miller_d27

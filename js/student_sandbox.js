@@ -1,5 +1,21 @@
 'use strict';
 
+var the_queues;
+var users;
+
+function init_objects_from_storage(){
+  if (!the_queues){
+    the_queues = JSON.parse(localStorage.the_queues);
+    console.log('the_queues', the_queues);
+  }
+  if (!users){
+    users = JSON.parse(localStorage.users);
+    console.log('users', users);
+  }
+}
+
+init_objects_from_storage();
+
 var courses = {};
 var aCourse = {
   courseNum: 'seattle-201d27',
