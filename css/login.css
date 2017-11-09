@@ -1,3 +1,90 @@
+main {
+  width: 1200px;
+  font-family: 'Montserrat', sans-serif;
+  background-image: url('../images/cfshield.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 300px;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  height: 100px;
+  top: 0;
+  background: #000;
+  color: #fff;
+  outline: 1px dashed;
+  font-family: 'Monsterrat', sans-serif;
+  font-weight: bold;
+}
+
+img#login_header_logo {
+	height: 100px;
+  margin-left: 760px;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+h1#login_header {
+  text-align: center;
+  font-size: 30px;
+  margin-left: 380px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+}
+
+form#login_form label {
+  margin-left: 390px;
+  font-size: 30px;
+}
+
+section#login_section {
+  margin-left: 460px;
+  margin-top: -110px;
+}
+
+form#login_form input{
+  margin-left: 425px;
+  width: 250px;
+  height: 35px;
+  font-size: 15px;
+  font-family: 'Monsterrat', sans-serif;
+  margin-bottom: 15px;
+  margin-top: 40px;
+}
+
+button#login_btn {
+  width: 190px;
+  height: 40px;
+  font-size: 23px;
+  font-family: 'Monsterrat', sans-serif;
+  font-weight: bold;
+  margin-top: 40px;
+  margin-left: 460px;
+  background-color: #cc3524;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+}
+
+button#signup_button {
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 30px;
+  background-color: #000;
+  color: #fff;
+  margin-top: 0px;
+  margin-bottom: 70px;
+  font-size: 20px;
+  font-family: 'Monsterrat', sans-serif;
+  font-weight: bold;
+}
+
 #signup_overlay {
   display: none;
   position: fixed;
@@ -12,14 +99,84 @@
 
 #signup_popup {
   display: none;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  width: 300px;
-  height: 150px;
-  margin-top: -75px;
-  margin-left: -150px;
+  position: absolute;
+  left: 400px;
+  top: 270px;
+  width: 480px;
+  height: 520px;
+  margin-top: -135px;
+  margin-left: -160px;
   background: #fff;
   border: 2px solid #000;
   z-index: 99999;
+}
+
+form#signup_form input {
+  margin-top: 10px;
+  width: 300px;
+  height: 35px;
+  margin-left: 90px;
+  margin-bottom: 10px;
+}
+
+fieldset#userType {
+  margin-left: 110px;
+  margin-bottom: 20px;
+}
+
+form#signup_form fieldset#userType label {
+  margin-left: 90px;
+}
+
+form#signup_form input[type=radio] {
+  width: 25px;
+  margin: 0 auto;
+}
+
+form#signup_form fieldset#course label {
+  margin-left: 210px;
+  margin-top: 10px;
+}
+
+form#signup_form label {
+  text-align: center;
+  margin-left: 195px;
+  color: #000;
+}
+
+button#user_signup {
+  margin-left: 160px;
+  margin-top: 40px;
+  width: 150px;
+  height: 40px;
+  background-color: #cc3524;
+  color: #fff;
+  border-radius: 30px;
+  border: none;
+  font-family: 'Monsterrat', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+button#cancel_signup {
+  margin-left: 160px;
+  margin-top: 20px;
+  width: 150px;
+  height: 40px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 30px;
+  border: none;
+  font-family: 'Monsterrat', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+footer#login_footer {
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background: #000;
+  outline: 1px dashed;
 }
