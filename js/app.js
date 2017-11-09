@@ -76,22 +76,12 @@ User.prototype.setPermissions = function() {
 };
 
 User.prototype.setPlaceHolderNames = function() {
-<<<<<<< HEAD
   if (this.userId === this.placeHolderUserId) {
     this.firstName = this.placeHolderMessaage;
     this.fullName = this.placeHolderMessaage;
   }
 };
-=======
-  if (this.userId === this.placeHolderId) {
-    this.firstName = this.placeHolderMessaage;
-    this.fullName = this.placeHolderMessaage;
-  }
-  //this.userPerms = this.userPermissionsOptions[this.userType];
-  this.fullName = this.firstName + ' ' + this.lastName;
-};
 
->>>>>>> 620864f1854481b57e66de4d8fffdf07a0bc62cd
 function Course(courseNum, instructor) {
   this.courseNum = courseNum;
   this.instructor = instructor;
