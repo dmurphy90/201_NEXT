@@ -122,6 +122,7 @@
 #active_course {
 	float: right;
   margin: 20px 25px;
+	margin-bottom: 90px;
 }
 
 #active_course p {
@@ -147,6 +148,7 @@
 #active_course .drop_items.active li {
 	/*border-top: 1px solid #b62f20;*/
 	padding:10px;
+
 }
 
 #active_course .drop_items.active li:first-of-type {
@@ -177,8 +179,6 @@
 #active_course li {
 	padding-top: 10px;
 }
-
-
 
 
 button#problem_otd_button {
