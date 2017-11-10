@@ -117,11 +117,11 @@ h1#login_header {
 }
 
 #queue .problemType{
-	width: 140px;
+	width: 150px;
 }
 
 #queue .RequestedTA {
-	width: 140px;
+	width: 130px;
 }
 
 #queue .time {
