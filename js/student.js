@@ -5,7 +5,7 @@ function testCourses(){
   var aCourse = {
     courseNum: 'seattle-201d27',
     instructor: 'Brian Nations',
-    availableTA:['StuartM', 'BhartiB']
+    availableTA:['StuartM', 'BhartiB', 'EvansJ']
   };
   courses['seattle-201d27'] = aCourse;
   localStorage.courses = JSON.stringify(courses);
