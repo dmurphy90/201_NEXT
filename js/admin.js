@@ -107,6 +107,7 @@ function customSelectAction(el, e) {
 // }
 
 function studentCardEvent(e) {
+  get_theQueues();
   var userid;
   if (e.target.id === true) {
     userid = e.target.id;
@@ -115,15 +116,19 @@ function studentCardEvent(e) {
   } else {
     return;
   }
+  the_queues[active_course_ul.dataset.value + '_beingHelped'] = [userid];
+  console.log(active_course_ul.dataset.value, userid);
   var tempPic = document.getElementById('user_image_wrap');
   tempPic.setAttribute('data-id',userid);
   tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
   var tempName = document.getElementById('student_name');
   tempName.innerText = users[userid].firstName;
-  beingHelped(userid);
+  set_theQueues();
+
 };
 
 function studentCard(user) {
+  console.log('this is studend card function with ',user);
   var userid = user;
   var tempPic = document.getElementById('user_image_wrap');
   tempPic.setAttribute('data-id',userid);
@@ -157,17 +162,23 @@ function createList(course) {
       var testli = document.getElementById(userid);
       console.log('testli',testli);
       testli.addEventListener('click', studentCardEvent);
-
     }
-
+    set_theQueues();
     if (the_queues[course + '_arr'][0]) {
-      studentCard(the_queues[course + '_arr'][0]);
+      console.log('course array exists');
+      if (the_queues[course + '_beingHelped'].length === 0) {
+        console.log('the first person should be showing up');
+        studentCard(the_queues[course + '_arr'][0]);
+      } else {
+        console.log('the person being helped is up');
+        studentCard(the_queues[course + '_beingHelped'][0]);
+      }
     } else {
       studentCard('LegoM');
     }
 
     setPauseClass(course);
-    studentCard(the_queues[course + '_arr'][0]);
+    //studentCard(the_queues[course + '_arr'][0]);
 
   };
   set_theQueues();
@@ -199,6 +210,7 @@ function bump() {
     the_queues[userCourse + '_arr'].push(userToBump);
     set_theQueues();
     removeFromBeingHelpedArray(userCourse, userToBump);
+    beingHelped(the_queues[userCourse + '_arr'][0]);
     createList(userCourse);
   }
 
@@ -226,6 +238,7 @@ function nextRemove(e) {
     the_queues[userCourse + '_arr'].splice(index, 1);
   }
   set_theQueues();
+  beingHelped(the_queues[userCourse + '_arr'][0]);
   createList(userCourse);
 }
 
@@ -298,7 +311,7 @@ function refreshQueue(){
   createList(userCourse);
 }
 createList(document.getElementById('active_course_ul').getAttribute('data-value'));
-//refreshQueueInterval();
+refreshQueueInterval();
 
 function get_theQueues(){
   the_queues = JSON.parse(localStorage.the_queues);
