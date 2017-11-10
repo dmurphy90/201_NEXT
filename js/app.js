@@ -31,7 +31,7 @@ var usersData = [
   ['Man', 'Lego', 'student', 'seattle-201d27']
 ];
 
-var testProblems = [['DavenportR','number1','StuartM','seattle-201d27'],['MassieM', 'number2', 'BhartiB','seattle-201d27'],['VanNessJ', 'number 3', 'EvansJ','seattle-201d27'],['NorzaH', 'number4', 'StuartM', 'seattle-201d27'], ['MurphyD', 'number5', 'EvansJ', 'seattle-201d27'], ['UnterseherK', 'number4', 'EvansJ','seattle-301d27']];
+var testProblems = [['DavenportR','Git','StuartM','seattle-201d27'],['MassieM', 'Problem Domain', 'BhartiB','seattle-201d27'],['VanNessJ', 'Code Error', 'EvansJ','seattle-201d27'],['NorzaH', 'Other', 'StuartM', 'seattle-201d27'], ['MurphyD', 'Styling', 'EvansJ', 'seattle-201d27'], ['UnterseherK', 'Other', 'EvansJ','seattle-301d27']];
 
 // var testProblems = [['DavenportR','number1','Mike','seattle-201d27'],['MassieM', 'number2', 'Bhavya','seattle-201d27'],['VanNessJ', 'number 3', 'Josh','seattle-201d27'],['NorzaH', 'number4', 'Mike', 'seattle-201d27'], ['MillerK', 'Number 1', 'Bhavya', 'seattle-201d27'], ['MurphyD', 'number5', 'Josh', 'seattle-201d27'], ['UnterseherK', 'number4', 'Josh','seattle-301d27']];
 
