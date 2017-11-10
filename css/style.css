@@ -129,40 +129,6 @@ h1#login_header {
 	margin-right: 10px;
 }
 
-/*#queue li, #available_ta li, #problem_type li{
-	font-size: 18px;
-	padding: 5px;
-	text-align: left;
-}*/
-
-/*#queue li:nth-of-type(odd), #available_ta li:nth-of-type(odd), #problem_type li:nth-of-type(odd){
-	outline: 1px dashed;
-}*/
-
-/*#queue li .course_focus, #available_ta li .course_focus {
-	display: inline-block;
-	width: 100px;
-	margin-right:10px;
-	font-weight: bold;
-	text-align: right;
-}*/
-
-/*#queue li .course_num, #available_ta li .course_num{
-	display: inline-block;
-	width: 50px;
-	margin-right:10px;
-	font-weight: bold;
-	text-align: right;
-}*/
-
-/*#queue li .name #available_ta li .name {
-	display: inline-block;
-	width: 160px;
-	margin-right:30px;
-	font-weight: bold;
-	text-align: right;
-}*/
-
 #queue li .issue {
 	display: inline-block;
 	margin-right: 30px;
@@ -186,6 +152,6 @@ footer {
 	background-color: #000;
 }
 
-.pause {
+#queue li.pause {
 	background: #F0F09D;
 }
