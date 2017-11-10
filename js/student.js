@@ -1,5 +1,6 @@
 'use strict';
 
+// Create test TAs instead of checking for actual available TAs.
 function testCourses(){
   var courses = {};
   var aCourse = {
@@ -13,12 +14,14 @@ function testCourses(){
 
 testCourses();
 
+// Create global variables.
 var userCourse;
 var activeUser;
 var currentUser;
 var refresh_intervalId;
 var student_requested_ta;
 
+// Get HTML elements that will be manipulated.
 var pickTA = document.getElementById('pick_ta');
 var problemType = document.getElementById('prob_type');
 var flip_front = document.getElementById('enter_queue');
@@ -29,7 +32,7 @@ var queueDisplay = document.getElementById('queue');
 var selectedTA = document.getElementById('ta_image_wrap');
 var TA_Pic = document.createElement('img');
 
-
+// Create the queue.
 function createList(course) {
   var queueDisplay = document.getElementById('queue');
   //reorder the array if any requests are paused
@@ -47,6 +50,7 @@ function createList(course) {
   set_theQueues();
 }
 
+// On page load, get local storage and listen for button events.
 function student_request_event_listeners() {
   if( sessionStorage.username){
     userCourse = users[sessionStorage.username].currentCourse;
@@ -64,6 +68,7 @@ function student_request_event_listeners() {
   selectedTA.appendChild(TA_Pic);
 }
 
+// Called by previous function, populates list of available TAs.
 function set_available_ta_dropdown(){
   if(localStorage.courses){
     var courses = JSON.parse(localStorage.courses);
@@ -78,6 +83,7 @@ function set_available_ta_dropdown(){
   }
 }
 
+// Display the profile pic of the selected TA.
 function displaySelectedTA() {
   selectedTA.innerHTML = '';
   var TA_Pic = document.createElement('img');
@@ -86,6 +92,7 @@ function displaySelectedTA() {
   selectedTA.appendChild(TA_Pic);
 }
 
+// Grab TA preference and problem type, then enter the bottom of the queue for your course.
 function enterQueue() {
   get_theQueues();
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(180deg)';
@@ -98,6 +105,7 @@ function enterQueue() {
   createList(userCourse);
 };
 
+// Drop out of the queue for your course.
 function removeRequest(e) {
   e.preventDefault();
   document.getElementsByClassName('flipBtn')[0].style.transform = 'rotateX(0deg)';
@@ -109,6 +117,7 @@ function removeRequest(e) {
   createList(userCourse);
 }
 
+// Toggle freezing your place in line.
 function pauseResume(e) {
   e.preventDefault();
   get_theQueues();
@@ -116,6 +125,7 @@ function pauseResume(e) {
   set_theQueues();
 }
 
+// I don't know what this does. Probably something amazing.
 function setPauseClass(course) {
   get_theQueues();
   var pauseIds = the_queues.getPausedArray(course);
@@ -124,6 +134,7 @@ function setPauseClass(course) {
   }
 }
 
+// This has to do with the amazing thing happening. Probably pulling something from local storage that has something to do with something something the pause state.
 function get_theQueues(){
   the_queues = JSON.parse(localStorage.the_queues);
   the_queues = Object.setPrototypeOf(the_queues, new Queues());
@@ -133,10 +144,12 @@ function set_theQueues(){
   localStorage.the_queues = JSON.stringify(the_queues);
 }
 
+// Every 10 seconds...
 function refreshQueueInterval(){
   refresh_intervalId = setInterval(refreshQueue, 10000);
 }
 
+// Refresh the queue.
 function refreshQueue(){
   queueDisplay.innerHTML = '';
   createList(userCourse);
@@ -150,7 +163,7 @@ function refreshQueue(){
 student_request_event_listeners();
 
 
-
+// Clear storage on signout.
 function signout(event) {
   sessionStorage.clear();
   window.location = './index.html';
