@@ -1,6 +1,7 @@
 /* style sheet*/
 .ta_view_right {
 	float: right;
+	width: 600px;
 }
 
 .ta_view_left {
@@ -46,14 +47,14 @@
 	margin-right:20px;
 	margin-top: -20px;
 	padding: 1em 1.5em;
-	background-color: #cc3524;
-	border: none;
+	background-color: #fff;
+	border: 1px solid #cc3524;
 	border-radius: 30px;
-	color: #fff;
+	color: #cc3524;
 }
 
 #bump:hover {
-	background-color: #b62f20;
+	background-color: #fdf3f2;
 }
 
 #next{
@@ -65,23 +66,26 @@
 	margin-top: -20px;
 	padding: 1em 1.5em;
 	font-family: 'Monsterrat', sans-serif;
-  background-color: #4fbf4f;
+  background-color: #cc3524;
   color: #fff;
   border: none;
   border-radius: 30px;
 }
 
 #next:hover{
-  background-color: #3f9f3f;
+  background-color: #b62f20;
 }
 
 .problem_otd_admin {
 	margin: 0 auto;
 	margin-top: 20px;
+	float: left;
+	/*width: 300px;*/
 }
 
 #active_course {
-	float: left;
+	float: right;
+	margin: 10px;
 }
 
 #active_course p {
