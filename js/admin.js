@@ -2,6 +2,7 @@
 
 var adminHeader = document.getElementById('admin_header');
 var currentUser;
+var currentStudent;
 
 //var test_TA = 'StuartM';
 var currentCourseToDislay = 'Unavailable';
@@ -107,6 +108,9 @@ function customSelectAction(el, e) {
 // }
 
 function studentCardEvent(e) {
+  get_theQueues();
+  var currentCourse = document.getElementById('active_course_ul').dataset.value;
+  the_queues[currentCourse + '_beingHelped'] = [];
   var userid;
   if (e.target.id === true) {
     userid = e.target.id;
@@ -115,6 +119,27 @@ function studentCardEvent(e) {
   } else {
     return;
   }
+  //console.log('userid on click',userid);
+  var tempPic = document.getElementById('user_image_wrap');
+  tempPic.setAttribute('data-id',userid);
+  tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
+  var tempName = document.getElementById('student_name');
+  tempName.innerText = users[userid].firstName;
+
+  console.log('current course',currentCourse);
+
+  set_theQueues();
+  beingHelped(userid);
+
+};
+
+function studentCard(user) {
+  var currentCourse = document.getElementById('active_course_ul').dataset.value;
+  if (the_queues[currentCourse + '_beingHelped'] = user) {
+  var userid = user;
+} else {
+  userid = the_queues[currentCourse + '_beingHelped'];
+}
   var tempPic = document.getElementById('user_image_wrap');
   tempPic.setAttribute('data-id',userid);
   tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
@@ -122,18 +147,9 @@ function studentCardEvent(e) {
   tempName.innerText = users[userid].firstName;
   beingHelped(userid);
 };
-
-function studentCard(user) {
-  var userid = user;
-  var tempPic = document.getElementById('user_image_wrap');
-  tempPic.setAttribute('data-id',userid);
-  tempPic.innerHTML = '<img src="' + users[userid].profileImagePath + '" >';
-  var tempName = document.getElementById('student_name');
-  tempName.innerText = users[userid].firstName;
-
-};
 // this builds the list everytime a change is made
 function createList(course) {
+  console.log('createlist just ran');
   get_theQueues();
   if (course === 'Unavailable') {
     var olClear = document.getElementById('queue');
@@ -295,10 +311,13 @@ function refreshQueueInterval(){
 
 function refreshQueue(){
   var userCourse = document.getElementById('active_course_ul').getAttribute('data-value');
+  console.log('user course for refresh', userCourse);
   createList(userCourse);
 }
+
+// this creates the page list when you change the selected course
 createList(document.getElementById('active_course_ul').getAttribute('data-value'));
-//refreshQueueInterval();
+
 
 function get_theQueues(){
   the_queues = JSON.parse(localStorage.the_queues);
@@ -308,3 +327,4 @@ function get_theQueues(){
 function set_theQueues(){
   localStorage.the_queues = JSON.stringify(the_queues);
 }
+refreshQueueInterval();
