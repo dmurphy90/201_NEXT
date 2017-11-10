@@ -298,7 +298,7 @@ function refreshQueue(){
   createList(userCourse);
 }
 createList(document.getElementById('active_course_ul').getAttribute('data-value'));
-//refreshQueueInterval();
+refreshQueueInterval();
 
 function get_theQueues(){
   the_queues = JSON.parse(localStorage.the_queues);
