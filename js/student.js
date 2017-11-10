@@ -1,19 +1,5 @@
 'use strict';
 
-// Create test TAs instead of checking for actual available TAs.
-function testCourses(){
-  var courses = {};
-  var aCourse = {
-    courseNum: 'seattle-201d27',
-    instructor: 'Brian Nations',
-    availableTA:['StuartM', 'BhartiB', 'EvansJ']
-  };
-  courses['seattle-201d27'] = aCourse;
-  localStorage.courses = JSON.stringify(courses);
-}
-
-testCourses();
-
 // Create global variables.
 var userCourse;
 var activeUser;
